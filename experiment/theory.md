@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ### Theory
 
 Measurement of applied torques is of fundamental importance in all rotating bodies to Ensure that the design of the rotating element is adequate to prevent failure under shear stresses.
@@ -67,3 +68,6 @@ The capacitive sensor is connected to an inductor coil wound around the shaft. T
 ![8](images/figure8.PNG)
 
 Laser Optical techniques for torque measurement have become available recently with the development of laser diodes and fiber-optic light transmission systems. One such system is shown in Figure. Two black-and-white striped wheels are mounted at either end of the rotating shaft and are in alignment when no torque is applied to the shaft. Light from a laser diode light source is directed by a pair of fiber-optic cables onto the wheels. The rotation of the wheels causes pulses of reflected light, which are transmitted back to a receiver by a second pair of fiber-optic cables. Under zero torque conditions, the two pulse trains of reflected light are in phase with each other. If torque is now applied to the shaft, the reflected light is modulated. Measurement by the receiver of the phase difference between the reflected pulse trains therefore allows the magnitude of torque in the shaft to be calculated. The cost of such instruments is relatively low, and an additional advantage in many applications is their small physical size.
+=======
+### Link your theory in here.
+>>>>>>> dfc6cdbc9f75d1408404c7f93e0d244b46fd1336
