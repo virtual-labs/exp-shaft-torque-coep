@@ -1,1 +1,1 @@
-### Aim of the experiment
+### Measurement of shaft Torque and identifying suitable technique for sensing
