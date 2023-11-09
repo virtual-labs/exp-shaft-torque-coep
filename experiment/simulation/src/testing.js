@@ -29,13 +29,15 @@ function testing() {
 	torque = 0;
 	torque_corr = 0;
 	speed = 0;
+	speed1 = 0;
 	power = motorSize;
 	
 	length = 0;
 	flag_switch = 0;
 	rpm = 0;
 	flag = 0;
-	wt_max = 0;
+	flag_err = 0;
+	wt_max = 1;
 	var array = [];
 	var torque_std;
 	var weight_max;
@@ -45,6 +47,7 @@ function testing() {
 	speedJson = {};
 	arrayJson = [];
 	masterJson = {};
+	testing = {}; 
 
 	
 	var motor_Green = paper.image("images/motor.PNG", (x + 10), (y + 90), 130, 120);
@@ -284,40 +287,42 @@ function testing() {
 	
 	
 	function torque_Stand(x, y) {
-		torque_std = (power * 9.5488 * 1000) / speed;
+		torque_std = (power * 9.5488 * 1000) / 1440;
 		console.log("torque" + torque_std);
 		if (lengthType == 1) {
 			wt_max = torque_std / 1.00;
-			weight_max = wt_max + 0.5 ;
+			weight_max = wt_max + 2 ;
 			length = 103.94;
 			console.log("weigt max" + weight_max);
 		}
 		else if (lengthType == 2) {
 			wt_max = torque_std / 2.00;
-			weight_max = wt_max + 0.5 ;
+			weight_max = wt_max + 2 ;
 			length = 203.94;
 			console.log("weigt max" + weight_max);
 		}
 		else if (lengthType == 3) {
 			wt_max = torque_std / 3.00;
-			weight_max = wt_max + 0.5 ;
+			weight_max = wt_max + 2 ;
 			length = 303.94;
 			console.log("weigt max" + weight_max);
 		}
 		else if (lengthType == 4) {
 			wt_max = torque_std / 4.00;
-			weight_max = wt_max + 0.5 ;
+			weight_max = wt_max + 2 ;
 			length = 403.94;
 			console.log("weigt max" + weight_max);
 		}
 
 	}
 
-
+	var redMotor = 0;
 	motor_Red.click(function(event) {
 		flag_switch = 1;
 		pipe_fill(x,y);
 		switch_circle.attr('fill', 'green');
+		testing.redAct = redMotor;
+		testing.redExp = 1;  
 
 	});
 	
@@ -326,112 +331,136 @@ function testing() {
 	function torque_calculation(x, y) {
 		
 		
-//		if (speed != 0) {
-//			if (rpm == speed) {
-
+		if (speed != 0) {
+			if (rpm == speed && flag_err == 0) {
+				
 				if (wt >= 1) {
+					
 					if  (wt < wt_max )
 					{
 					torque_corr = (9.8 * length) * (wt / 1000);
 					flag = 0;
+					flag_err = 0;
 					}
 					else if (wt > wt_max )
 					{
 					torque_corr = (9.8 * length) * (wt / 1000);
 					flag = 1;
+					flag_err = 0;
 					count_er++;
 					
 					}
-					
 					checkAns = 1;
+	
 					$("#btnAnsCheck").prop("disabled", false);
+					$("#speedAns").prop("disabled", false);
 					console.log("torque with load " + torque_corr);
 				}
 				else if (wt == 0) {
-					torque_corr = (power * 9.5488 * 1000) / speed;
+//					torque_corr = (power * 9.5488 * 1000) / speed;
+					
+					checkAns = 0;
+					flag_err = 1;
+					alert("add the loads")
+
+					$("#btnAnsCheck").prop("disabled", true);
+					$("#speedAns").prop("disabled", true);
+					
+				}
+
+
+
+		}
+			else if (rpm != speed && flag_err == 0) {
+				if (wt == 1) {
+					torque_corr = (9.8 * length) * (wt / 1000);
 					flag = 0;
 					checkAns = 1;
-
+					flag_err = 0;
+	
 					$("#btnAnsCheck").prop("disabled", false);
 					console.log("torque with no load " + torque_corr);
 				}
-//				else if (wt > wt_max )
-//				{
-//					
-//				 	torque_corr = (9.8 * length) * (wt / 1000);
-//				 	flag = 1;
-//				 	$("#btnAnsCheck").prop("disabled", false);
-//					console.log("torque with no load " + torque_corr);
-//					
-//				}
+				else {
+					alert("plz start from 1 kg ");
+					
+					checkAns = 0;
+					flag_err = 1;
+					$("#btnAnsCheck").prop("disabled", true);
+					console.log("previous speed" + rpm);
+				}
+			}
+			else if (rpm == speed && flag_err == 1){
+					if (wt == 1) {
+					torque_corr = (9.8 * length) * (wt / 1000);
+					flag = 0;
+					checkAns = 1;
+					flag_err = 0;
+	
+					$("#btnAnsCheck").prop("disabled", false);
+					console.log("torque with no load " + torque_corr);
+				}
+				else {
+					alert("plz start from 1 kg ");
+					
+					checkAns = 0;
+					flag_err = 1;
+					$("#btnAnsCheck").prop("disabled", true);
+					console.log("previous speed" + rpm);
+				}
+				
+			}
 
-
-//		}
-//			else if (rpm != speed) {
-//				if (wt == 0) {
-//					torque_corr = (power1 * 9.5488 * 1000) / speed;
-//					flag = 0;
-//					checkAns = 1;
-//					pipe_fill(x,y);
-//					wt_img.hide();
-//					$("#btnAnsCheck").prop("disabled", false);
-//					console.log("torque with no load " + torque_corr);
-//				}
-//				else {
-//					alert("plz selct no load condi");
-//					flag = 1;
-//				
-//
-//					console.log("previous speed" + rpm);
-//				}
-//			}
-
-//		}
-
-//		else {
-//			
-//			alert("Please select the RPM");
-//			checkAns = 0;
-//		}
-
+		}
+	
+		else {
+			
+			alert("Please select the RPM");
+			checkAns = 0;
+			$("#btnAnsCheck").prop("disabled", true);
+		}
+		rpm = speed; 
 	}
 	
 	
 		function error_calculation(x, y) {
 		torque_calculation(x, y);
-		if (flag == 0)
-		{ 
-			error = torque_corr * 2 / 100;
-			torque = torque_corr + error;
-		}
-		else if (flag == 1)
-		{	
-			if(count_er == wt_max)
-			{ 
-			error = torque_corr * 20 / 100;
-			torque = torque_corr - error;
+			if (flag == 0)
+			{
+				error = torque_corr * 0.5 / 100;
+				torque = torque_corr + error;
+				speed1 = speed;
 			}
-			else if (count_er > wt_max){
-			error = torque_corr * 40 / 100;
-			torque = torque_corr - error;
-			}
+			else if (flag == 1)
+			{
+				error = torque_corr * 0.5 / 100;
+				torque = torque_corr + error;
+				speed1 = speed1 - 100;
+			} 
 			
-		}
 		
 		selectedtor.attr('text', torque.toFixed(2));
 		console.log("error otr" + torque);
 	}
 	
-	
+	var motCnt = 0;
+	var motEnt = 0;
 	motor_Green.click(function(event) {
 		id = 1;
+		motCnt++;
+		testing.motAct = motCnt;
 		if (flag_switch == 1) {
 			if (checkAns == 0)
 			{ 
 			array.push(wt);
 			console.log("array" + array);
 			torque_calculation(x, y);
-			error_calculation(x, y);	
+			if (flag_err == 0){ 
+				error_calculation(x, y);
+				motEnt++;
+				testing.motExp = motEnt;	
+			}
+		
 			
 			}
 			else
@@ -440,16 +469,16 @@ function testing() {
 			}
 		}
 		else {
-			alert("click in flow switch")
+			alert("click on the motor")
 		}
 
 
 	});
-
+	var torEnt = 0;
 	$("#btnAnsCheck").click(function() {
-
-
-
+		
+		 testing.torExp = motEnt;
+		 testing.torAct = torEnt;
 		var speedAns = $("#speedAns").val().trim();
 		console.log("ans check" + speedAns);
 		flow = torque_corr.toFixed(2);
@@ -474,8 +503,7 @@ function testing() {
 
 		} else if (id == 4) {
 
-				alert("Torque = Power X 9.5488 / Speed - for no load condition"
-				+" Torque = F X r - for load condition")
+				alert(" Torque = F X r - for load condition");
 
 		} else {
 			speedAns = $("#speedAns").val().trim();
@@ -509,7 +537,7 @@ function testing() {
 		speedJson.torque_corr = torque_corr.toFixed(2);
 		speedJson.torque_err = torque.toFixed(2);
 		speedJson.load = wt;
-		speedJson.RPM = speed;
+		speedJson.RPM = speed1;
 		speedJson.error = error.toFixed(2);
 		//				console.log("Flow " + flowJson.mFlow);
 		arrayJson.push(speedJson);
@@ -553,7 +581,7 @@ function testing() {
 			+ '<div class="row" >'
 			+ '<div class="col-sm-12">'
 			+ '<button type="button"  class="btn btn-primary btnStyle" id="showGraph"  >SHOW GRAPH</button>'
-			+ '<button type="button"  class="btn btn-primary btnStyle" id="calibration" hidden >Next Level</button>'
+			+ '<button type="button"  class="btn btn-primary btnStyle" id="fault" >Next Level</button>'
 			+ '</div>'
 			+ '</div>'
 
@@ -581,9 +609,11 @@ function testing() {
 //				}
 
 				if (checkAlert == 0) {
-					$("#calibration").removeAttr("hidden",false);
+//					$("#calibration").removeAttr("hidden",false);
 					$("#showGraph").attr("hidden",true);
 					graphCreate();
+					data.Testing = testing;
+					console.log(data);
 				}
 		}
 			else {
@@ -597,7 +627,7 @@ function testing() {
 				var graphData1 = [];
 				for (var i = 0; i < masterJson.demo.length; i++) {
 					xdata[i] = parseFloat(masterJson.demo[i].torque_corr);
-					ydata[i] = parseFloat(masterJson.demo[i].torque_err);
+					ydata[i] = parseFloat(masterJson.demo[i].RPM);
 
 				}
 				for (var j = 0; j < masterJson.demo.length; j++) {
@@ -621,7 +651,7 @@ function testing() {
 				console.log(" Standard Torque v/s Actual Torque " + graphData1);
 				Highcharts.chart('canvas-div', {
 					title: {
-						text: ' Graph of Standard Torque & Actual Torque '
+						text: ' Graph of Standard Torque & Speed '
 					},
 //					subtitle: {
 //						text: 'Meter Constant is  pulses (per/ltr)'
@@ -671,16 +701,22 @@ function testing() {
 
 			console.log(masterJson);
 		});
-		$("#calibration").click(function() {
-			calibration();
+		
+		$("#fault").click(function() {
+			$("#canvas-div").html("");
+			$("#main-div-conf").html("");
+			fualtFinding();
+			
 		});
-//		var str =  '<div class="row">'
-//			+ '<div class="col-sm-12">'
-//			+ '<button type="button"  class="btn btn-primary btnStyle" id="calibration"  >Next Level</button>'
-//			+ '</div>'
-//			+ '</div>'
-//			$("#sub-main-div").append(str);
-//			
+		var str =  '<div class="row">'
+			+ '<div class="col-sm-12">'
+			+ '<button type="button"  class="btn btn-primary btnStyle" id="fault">Next Level</button>'
+			+ '</div>'
+			+ '</div>'
+			$("#sub-main-div").append(str);
+			
+			
+			
 			
 	}
 	//	weights(x-470,y+187);
