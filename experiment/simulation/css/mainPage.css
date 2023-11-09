@@ -169,12 +169,9 @@ table{
 .highcharts-data-table tr:hover {
   background: #f1f7ff;
 }
-#weight,#meter,#cylinderPiston
-{
-	font-size:14px;color:#fff;margin-bottom:10px;
-}
+
 /* RotaMeter CSS */
 .validMaterialMsgStyle{
-	background-color: #edcece;
+	background-color: #d41717;
     padding: 20px;
 }

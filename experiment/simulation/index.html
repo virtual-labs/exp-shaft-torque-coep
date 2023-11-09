@@ -14,7 +14,7 @@
    <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/mainPage.css">
 	<link rel="stylesheet" href="css/style.css">
-	
+	<link rel="stylesheet" href="css/sharf.css">
 </head>
 
 <style>
@@ -26,14 +26,27 @@
 
 
 </style>
+<script>
+function blink_text() {
+    $('.blink').fadeOut(500);
+    $('.blink').fadeIn(500);
+}
+setInterval(blink_text, 1000);
+</script>
+
 <body bgproperties="fixed">
 
-
+<header>
+		<img class="COEPLogo" src='images/COEPlogo.png' />
+		<img class="VlabLogo" src='images/vlablogo.jpg' />
+		<span id="colgName">COEP Technological University , PUNE</span>		
+		
+</header>
 	
 <div  class="row container-fluid" id="main-div">
 	<div class="col-lg-5" id="main-div">
 				<div class="panel panel-primary">
-	      			<div class="panel-heading bg-info" id="panelHeading1"><center id="centerText1">CONFIGURATION OF SHAFT TORQUE</center>
+	      			<div class="panel-heading" id="panelHeading1"><center id="centerText1">CONFIGURATION OF SHAFT TORQUE</center>
 	      			</div>
 	     			<div class="panel-body" id="main-div-conf">
 	     			<div class="row" id="sub-main-div">
@@ -49,13 +62,15 @@
 	   
 			<div class="col-lg-7" id="canvas">
 	             <div class="panel panel-primary">
-	      			<div class="panel-heading bg-info" id="panelHeading2"><center id="centerText2">SHAFT TORQUE CHARACTERIZATION DIAGRAM</center>
+	      			<div class="panel-heading" id="panelHeading2"><center id="centerText2">SHAFT TORQUE CHARACTERIZATION DIAGRAM</center>
 	      			</div>
 	      			<label  id="counter"></label>
 	      			<div class="panel-body" id="canvas-div" >
 	      			<img src="images/shaft_torque.png" height="80%" width="80%">
 	      			</div>
-
+					<div class="panel-body" id="canvas-div1" >
+	      			
+	      			</div>
 	   			</div>
 	       </div>
 	</div>
@@ -84,6 +99,8 @@ Copyrights &copy; COEP - Virtual Lab
 <script type="text/javascript" src="src/questions.js"></script>
 <script type="text/javascript" src="src/Calibration.js"></script>
 <script type="text/javascript" src="src/testing.js"></script>
+<script type="text/javascript" src="src/faultFinding.js"></script>
+<script type="text/javascript" src="src/resultAnaylsis.js"></script>
 
 
 
