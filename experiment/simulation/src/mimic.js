@@ -36,6 +36,7 @@ function mimic() {
 	rpm = 0;
 	flag = 0;
 	wt_max = 0;
+	checkAlert = 0;
 	var array = [];
 	var torque_std;
 	var weight_max;
@@ -45,6 +46,8 @@ function mimic() {
 	speedJson = {};
 	arrayJson = [];
 	masterJson = {};
+	mimic = {};
+	
 
 	
 	var motor_Green = paper.image("images/motor.PNG", (x + 10), (y + 90), 130, 120);
@@ -222,8 +225,16 @@ function mimic() {
 		torque_Stand(x, y);
 		count = count + 1;
 		if (wt >= weight_max) {
-		
-			 alert("Max limit");
+			if (weight_max >= 4)
+			{ 
+				alert("Max limit");
+			}
+//			else 
+//			{
+//				alert("Please select the another configuration");
+////				location.reload();
+//			}
+//			 
 
 		}
 		else {
@@ -242,6 +253,10 @@ function mimic() {
 				});
 			}
 			else{
+				const index = array.indexOf(wt);
+			if (index > -1) { 
+ 				array.splice(index, 1); 
+			}
 				alert("check answer");
 			}	
 		}
@@ -275,6 +290,10 @@ function mimic() {
 				});
 			}
 			else{
+				const index = array.indexOf(wt);
+				if (index > -1) { 
+ 				array.splice(index, 1); 
+				}
 				alert("check answer");
 			}
 		}
@@ -287,36 +306,39 @@ function mimic() {
 		console.log("torque" + torque_std);
 		if (lengthType == 1) {
 			wt_max = torque_std / 1.00;
-			weight_max = wt_max + 0.5 ;
+			weight_max = parseInt(wt_max);
 			length = 103.94;
 			console.log("weigt max" + weight_max);
 		}
 		else if (lengthType == 2) {
 			wt_max = torque_std / 2.00;
-			weight_max = wt_max + 0.5 ;
+			weight_max = parseInt(wt_max);
 			length = 203.94;
 			console.log("weigt max" + weight_max);
 		}
 		else if (lengthType == 3) {
 			wt_max = torque_std / 3.00;
-			weight_max = wt_max + 0.5 ;
+			weight_max = parseInt(wt_max) ;
 			length = 303.94;
 			console.log("weigt max" + weight_max);
 		}
 		else if (lengthType == 4) {
 			wt_max = torque_std / 4.00;
-			weight_max = wt_max + 0.5 ;
+			weight_max = parseInt(wt_max);
 			length = 403.94;
 			console.log("weigt max" + weight_max);
 		}
 
 	}
 
-
+ 	var redcnt = 0;
 	motor_Red.click(function(event) {
 		flag_switch = 1;
 		pipe_fill(x,y);
 		switch_circle.attr('fill', 'green');
+		redcnt++;
+		mimic.redMotor = redcnt;
+		mimic.redExp = 1;
 
 	});
 	
@@ -337,13 +359,14 @@ function mimic() {
 					else if (wt > wt_max )
 					{
 					torque_corr = (9.8 * length) * (wt / 1000);
-					flag = 1;
+//					flag = 1;
 					count_er++;
 					
 					}
 					
 					checkAns = 1;
 					$("#btnAnsCheck").prop("disabled", false);
+					$("#speedAns").prop("disabled", false);
 					console.log("torque with load " + torque_corr);
 				}
 				else if (wt == 0) {
@@ -352,6 +375,7 @@ function mimic() {
 					checkAns = 1;
 
 					$("#btnAnsCheck").prop("disabled", false);
+					$("#speedAns").prop("disabled", false);
 					console.log("torque with no load " + torque_corr);
 				}
 //				else if (wt > wt_max )
@@ -395,75 +419,155 @@ function mimic() {
 
 	}
 	
-	
+		eCnt = 0;
 		function error_calculation(x, y) {
 		torque_calculation(x, y);
+		eCnt++;
+		mimic.eddyExpt = eCnt;
+		
 		if (flag == 0)
-		{ 
-			error = torque_corr * 2 / 100;
-			torque = torque_corr + error;
-		}
-		else if (flag == 1)
-		{	
-			if(count_er == wt_max)
-			{ 
-			error = torque_corr * 20 / 100;
-			torque = torque_corr - error;
+		{ 	
+			let min = 0.5;
+			let max = 2;
+//			let randomNum = 20;
+			randomNum = Math.floor(Math.random() * max) + min;
+			error = torque_corr * randomNum / 100;
+// 			error = randomNum;
+			if (eCnt == 2){ 
+				torque = torque_corr - error;	
 			}
-			else if (count_er > wt_max){
-			error = torque_corr * 40 / 100;
-			torque = torque_corr - error;
+			else if (eCnt == 3){
+				torque = torque_corr - error;
 			}
-			
+			else{
+				torque = torque_corr + error;
+			}
 		}
+//		else if (flag == 1)
+//		{	
+//			if(count_er == wt_max)
+//			{ 
+//			error = torque_corr * 20 / 100;
+//			torque = torque_corr - error;
+//			}
+//			else if (count_er > wt_max){
+//			error = torque_corr * 40 / 100;
+//			torque = torque_corr - error;
+//			}
+//			
+//		}
 		
 		selectedtor.attr('text', torque.toFixed(2));
 		console.log("error otr" + torque);
 	}
 	
-	
+	var eddyMotor = 0;
 	motor_Green.click(function(event) {
 		id = 1;
+		array.push(wt); // insert pp value in an array
+		console.log("wt array : " + array);
+		eddyMotor++; 
+		mimic.eddAct = eddyMotor;
+		
+		const hasDuplicates = (array) => array.length !== new Set(array).size;
+					console.log("dupli"+hasDuplicates(array));
+					let duplicate = hasDuplicates(array);
+					console.log("dupli"+duplicate);
+					if (duplicate == 1){
+						checkAlert = 1;
+						const index = array.indexOf(wt);
+						if (index > -1) { 
+ 							array.splice(index, 1); 
+						}
+					}else{
+						checkAlert = 0;
+					}
+					
+			array.sort((a, b) => a - b); //sort the array in ascending order
+			console.log("sorted array : " + array);		
+//			for (var i = 0; i < array.length; i++) {
+//				if ((array[i] - array[i + 1]) == 0) {
+//					//alert that duplicate is present
+////					console.log("Duplicate values present in array..");
+////					alert("Please provide unique weight values !!");	
+//					 checkAlert = 1;
+//					array = array.filter((a, b) => array.indexOf(a) == b); 
+////					var dup = array.includes(array[i])//remove the duplicate value from the array
+////					console.log("array"+dup);
+//					console.log("After duplicate removal :" + array);
+//	
+//				}else{
+//				checkAlert = 0;
+//				}
+//				}
 		if (flag_switch == 1) {
-			if (checkAns == 0)
+			if (checkAlert  == 0 && checkAns == 0)
 			{ 
-			array.push(wt);
-			console.log("array" + array);
-			torque_calculation(x, y);
-			error_calculation(x, y);	
-			
+//				if (checkAns == 0 ){ 	
+					torque_calculation(x, y);	
+					error_calculation(x, y);
+//				}
+//				else{
+						
+//				}
+
 			}
 			else
-			{
-				alert("check answer ");
+			{	
+				
+				if(checkAns == 1){ 
+					alert("check answer ");	
+				}
+				if(checkAlert == 1){
+					alert("Please provide unique weight values !!");
+				}
+				
+				
+			
 			}
 		}
 		else {
-			alert("click in flow switch")
+			
+			const index = array.indexOf(wt);
+			if (index > -1) { 
+ 				array.splice(index, 1); 
+			}
+			alert("click on the motor");
+			
+			
 		}
 
 
 	});
-
+	
+	var torChk = 0;
 	$("#btnAnsCheck").click(function() {
-
+		torChk++;
+		mimic.torAct = torChk;
+		mimic.torExp = eCnt;
 
 
 		var speedAns = $("#speedAns").val().trim();
 		console.log("ans check" + speedAns);
 		flow = torque_corr.toFixed(2);
 		if (id <= 3) {
-			if (speedAns == flow) {
+			if(speedAns=="")
+			{
+			alert("Enter numerical value ");
+			}
+			else if (speedAns == flow) {
 				checkAns = 0;
 
 				$("#btnAnsCheck").prop("disabled", true);
+				$("#speedAns").prop("disabled", true);
 				$("#speedAns").val('');
 				selectedtor.attr('text', "0");
 //				pipe_empty(x,y);
 				tableCreate();
 
 				//event.stopPropagation();
-			} else if (speedAns != flow) {
+			}
+			else if (speedAns != flow) {
 
 				alert("Entered value is incorrect.Try it again ");
 
@@ -478,11 +582,15 @@ function mimic() {
 
 		} else {
 			speedAns = $("#speedAns").val().trim();
-
-			if (speedAns == flow) {
+			if(speedAns=="")
+			{
+			alert("Enter numerical value ");
+			}
+			else if (speedAns == flow) {
 				checkAns = 0;
 
 				$("#btnAnsCheck").prop("disabled", true);
+				$("#speedAns").prop("disabled", true);
 				$("#speedAns").val('');
 				selectedtor.attr('text', "0");
 //				pipe_empty(x,y);
@@ -520,16 +628,17 @@ function mimic() {
 		console.log(masterJson);
 
 		masterJson.demo.sort(function(a, b) {
-			return a.perc - b.perc;
+			return a.torque_corr - b.torque_corr;
 		});
-
+		
+		
 		$("#tableDesign").html("");
-		//				
-		//				$("#showGraphDiv").html("");
+						
+						$("#showGraphDiv").html("");
 		var tableMainDiv = ''
 			+ '<table class="table table-borderd" style="margin:10px;">'
 			+ ' <thead>'
-			+ '  <tr style="background-color:grey;color:#fff;" >'
+			+ '  <tr style="background-color:#212529;color:#fff;" >'
 			+ '  <th scope="col">Speed in RPM </th>'
 			+ '  <th scope="col">Load in kg </th>'
 			+ '   <th scope="col">Calculated Torque (Standard) (Nm)</th>'
@@ -549,48 +658,61 @@ function mimic() {
 
 		tableMainDiv += ' </tbody>'
 			+ '  </table>'
-			+ '<div class="row" >'
+//			+ '<div class="row" >'
 			+ '<div class="col-sm-12">'
-			+ '<button type="button"  class="btn btn-primary btnStyle" id="showGraph"  >SHOW GRAPH</button>'
-			+ '<button type="button"  class="btn btn-primary btnStyle" id="calibration" hidden >Next Level</button>'
+			+ '<button type="button"  class="btn btn-primary btnStyle" id="showGraph" hidden >SHOW GRAPH</button>'
+//			+ '<button type="button"  class="btn btn-primary btnStyle" id="calibration" hidden >Next Level</button>'
 			+ '</div>'
-			+ '</div>'
+//			+ '</div>'
 
 		$("#tableDesign").html(tableMainDiv);
-
+		if(masterJson.demo.length>=4)
+			{
+			$("#showGraph").removeAttr("hidden",false);
+			
+			}
 		$("#showGraph").click(function() {
-
+			
 		if (masterJson.demo.length >= 4) {
-//				if (array[0] != 0 && array[array.length - 1] != 100) {
-//					checkAlert = 1;
-//					alert(" You need to provide next input values as 1 and 100 !!");
-//
-//				}
-//
-//				else if (array[0] != 0) {
-//					checkAlert = 1;
-//					alert("You need to provide next input value as 1 !!");
-//
-//				}
-//
-//				else if (array[array.length - 1] != 100) {
-//					checkAlert = 1;
-//					alert("You need to provide next input value as 100 !!");
-//
-//				}
+				if (array[0] != 0 && array[array.length - 1] != weight_max)
+				{
+					checkAlert = 1; 
+					alert(" You need to provide next input values as 0 and "+weight_max+" !!");
+
+				}
+
+				 if (array[0] != 0) {
+					checkAlert = 1;
+					alert("You need to provide next input value as 0 !!");
+
+				}
+				else if (array[array.length - 1] != weight_max) {
+					checkAlert = 1;
+					alert("You need to provide next input value as  0 and "+weight_max+" !!");
+				}
+				else{
+					checkAlert = 0;
+				}
+			
 
 				if (checkAlert == 0) {
 					$("#calibration").removeAttr("hidden",true);
 					$("#showGraph").attr("hidden",true);
+					data.Mimic = mimic;
+					console.log(data);
 					graphCreate();
+					calibration();
+					
+					
 				}
 		}
-			else {
-				alert("Please provide atleast six reading ");
-			}
+//			else {
+//				alert("Please provide atleast four reading ");
+//			}
 
-
+			
 			function graphCreate() {
+				
 				var xdata = [];
 				var ydata = [];
 				var graphData1 = [];
@@ -613,8 +735,25 @@ function mimic() {
 				xdata.sort(function(a, b) { return a - b });
 				console.log("After xdata " + xdata);
 				console.log("After ydata " + ydata);
-				Xmax = parseFloat(xdata[xdata.length - 1]);
-				Ymax = parseFloat(ydata[ydata.length - 1]);
+//				Xmax = parseFloat(xdata[xdata.length - 1]);
+//				Ymax = parseFloat(ydata[ydata.length - 1]);
+				Xmax= Math.max.apply(Math,xdata);
+				Ymax= Math.max.apply(Math,ydata);
+				var verifyMax=0;
+				if(Xmax>Ymax)
+					{
+						verifyMax=Xmax;
+						
+					}
+				else
+				{
+					verifyMax=Ymax;
+					
+				}
+				
+				console.log("verifyMax " + verifyMax);
+				
+				
 				console.log("Xmax " + Xmax);
 				console.log("Ymax " + Ymax);
 				console.log(" Standard Torque v/s Actual Torque " + graphData1);
@@ -626,15 +765,15 @@ function mimic() {
 //						text: 'Meter Constant is  pulses (per/ltr)'
 //					},
 					xAxis: {
-						min: 1,
-						max: Xmax,
+						min: 0,
+						max: verifyMax,
 						title: {
 							text: 'Standard Torque'
 						}
 					},
 					yAxis: {
-						min: 1,
-						max: Ymax,
+						min: 0,
+						max: verifyMax,
 						title: {
 							text: 'Actual Torque'
 						}
@@ -643,7 +782,7 @@ function mimic() {
 						{
 							type: 'line',
 							name: 'Standard Torque values',
-							data: [[1 , 1], [Xmax, Ymax]],
+							data: [[0 , 0], [verifyMax, verifyMax]],
 							marker: {
 								enabled: false
 							},
@@ -669,17 +808,22 @@ function mimic() {
 			}
 
 			console.log(masterJson);
+			
 		});
-//		$("#calibration").click(function() {
-//			calibration();
-//		});
-//		var str =  '<div class="row">'
-//			+ '<div class="col-sm-12">'
-//			+ '<button type="button"  class="btn btn-primary btnStyle" id="calibration"  >Next Level</button>'
-//			+ '</div>'
-//			+ '</div>'
-//			$("#sub-main-div").append(str);
-//			
+		$("#calibration").click(function() {
+			 $("#canvas-div").html("");
+			
+			calibration();
+			
+			
+		});
+		var str =  '<div class="row">'
+			+ '<div class="col-sm-12">'
+			+ '<button type="button"  class="btn btn-primary btnStyle" id="calibration"  >Next Level</button>'
+			+ '</div>'
+			+ '</div>'
+			$("#sub-main-div").append(str);
+			
 			
 	}
 	//	weights(x-470,y+187);

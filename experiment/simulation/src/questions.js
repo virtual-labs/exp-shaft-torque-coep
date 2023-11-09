@@ -108,14 +108,14 @@
 					 
 					  +'</div>'
 					  $("#main-div-conf").html(htm);
-				CalculateActualFlowStr = '<div class="col-sm-5">'
+				CalculateActualFlowStr = '<div class="col-sm-3">'
 				       +'<label  id=""  class="" style="font-size:16px;margin-top:35px;">Expected Toque is :</label>'
 				       +'</div>'
-			           +'<div class="col-sm-3">'
-				       +'<input type="text" id="speedAns" style="margin-top:35px;width:100%;"  class=" form-control"/>'
+			           +'<div class="col-sm-4">'
+				       +'<input type="text" id="speedAns" style="margin-top:30px;width:100%;" disabled class=" form-control"/ >'
 				       +'</div>'
-				       +'<div class="col-sm-3">'
-				       +'<br><button type="submit" id="btnAnsCheck" style="margin-top:17px;width:100%;" class=" btn btn-primary" data-toggle="modal" data-target="#mimicModel" >Submit</button>'
+				       +'<div class="col-sm-4">'
+				       +'<br><button type="submit" id="btnAnsCheck" style="margin-top:10px;width:100%;" class=" btn btn-primary" data-toggle="modal" data-target="#mimicModel" disabled>Submit</button>'
 				       +'</div>'
 				      
 				 $("#CalculateActualFlow").html(CalculateActualFlowStr);	 
