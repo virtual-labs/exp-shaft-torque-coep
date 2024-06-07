@@ -2,38 +2,63 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "When a solid shaft is subjected to a torsion, the shear stress induced in the shaft at its center is",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "minimum",
+        "b": "maximum",
+        "c": "zero",
+        "d": "average"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "The design of shafts made of brittle materials is based on",
+      "answers": {
+        "a": "Rankine's theory",
+        "b": "Guest's theory",
+        "c": "St Venant's theory",
+        "d": "VonMises theory"
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "When a shaft is subjected to a twisting moment, every cross-section of the shaft will be under",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "tensile stress",
+        "b": "shear stress ",
+        "c": "compressive stress",
+        "d": "bending stress"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+	
+	
+	{
+      "question": "The standard length of the shaft is",
+      "answers": {
+        "a": "5 m",
+        "b": "6 m",
+        "c": "7 m",
+        "d": "all of these"
       },
-      "correctAnswer": "c",
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+	
+	{
+      "question": "The armature torque of a dc motor is a function of its",
+      "answers": {
+        "a": "Both field flux and armature current",
+        "b": "Field flux alone",
+        "c": "Armature current along",
+        "d": "Speed alone"
+      },
+      "correctAnswer": "a",
       "difficulty": "beginner"
     }
+	
   ]
 }
