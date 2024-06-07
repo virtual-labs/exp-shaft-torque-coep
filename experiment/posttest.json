@@ -2,37 +2,53 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "Which property is not required for shaft materials?,
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Good castability",
+        "b": "High fatigue strength",
+        "c": "Good machinability",
+        "d": "High shear and tensile strength"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
+     
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "The product of the tangential force acting on the shaft and its distance from the axis of the shaft (i.e. the radius of the shaft) is known as",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "torsional rigidity",
+        "b": "flexural rigidity ",
+        "c": "twisting moment",
+        "d": "bending moment"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+     
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+	
+	{
+      "question": "The shaft torque of a dc motor is less than its armature torque because of",
+      "answers": {
+        "a": "Rotational losses",
+        "b": "Copper losses",
+        "c": "Mechanical losses",
+        "d": "Back emf"
       },
-      "correctAnswer": "c",
+     
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+	
+	{
+      "question": "Under constant load condition, the speed of a dc motor is effected by",
+      "answers": {
+        "a": "Field flux alone",
+        "b": "Armature current alone",
+        "c": "Back emf",
+        "d": "Both armature current and field flux"
+      },
+     
+      "correctAnswer": "a",
       "difficulty": "beginner"
     }
   ]

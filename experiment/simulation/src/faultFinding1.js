@@ -10,8 +10,8 @@ function tableCreateForFualtFinding1()
 					+ ' <thead>'
 					+ '  <tr  style="padding:10px;background-color:#1d2b37;color:#fff;">'
 //					+ '  <th>Percentage</th>'
-					+ '   <th>Calculated Torque(Standard) (Nm)</th>'
-					+ '  <th >Shaft torque (Actual) (Nm)</th>'
+					+ '   <th>Magnetic Flow (Standard) (LPM)</th>'
+					+ '  <th >Rotameter Flow (Actual) (LPM)</th>'
 
 					+ '   </tr>'
 					+ '  </thead>'
@@ -49,8 +49,8 @@ function tableCreateForFualtFinding1()
 					+ ' <thead>'
 					+ '  <tr  style="padding:10px;background-color:#1d2b37;color:#fff;">'
 //					+ '  <th><center>Percentage</center></th>'
-					+ '   <th><center>Calculated Torque (Standard) (Nm)</center></th>'
-					+ '  <th><center>Shaft torque  (Actual) (Nm)</center></th>'
+					+ '   <th><center>Magnetic Flow (Standard) (LPM)</center></th>'
+					+ '  <th><center>Rotameter Flow (Actual) (LPM)</center></th>'
 
 					+ '   </tr>'
 					+ '  </thead>'
@@ -87,11 +87,10 @@ function tableCreateForFualtFinding1()
 
 
  var randomNumber;
- var ent = 0;
 function fualtFinding()
 {
 	
-$("#centerText1").html("SHAFT TORUE DIAGRAM");
+	$("#centerText1").html("ROTAMETER DIAGRAM");
 	 $("#centerText2").html("FUALT FINDING ");
 	$("#main-div-conf").html("");
 	 $("#canvas-div").html("");
@@ -99,8 +98,8 @@ $("#centerText1").html("SHAFT TORUE DIAGRAM");
 	 $("#nextFaultFindingDiv").html("");
 	 $("#calibrationDiv").html("");
 	 $("#panelHeadingBold").html(""); 
-	  randomNumber = Math.round(Math.random() * 2);
-//	 randomNumber = 0;
+//	  randomNumber=Math.floor(Math.random() * 2);
+	 randomNumber = 0;
 	 console.log("random  "+randomNumber);
 	var str=''
 	str+='<div class="row ">'
@@ -113,7 +112,7 @@ $("#centerText1").html("SHAFT TORUE DIAGRAM");
 //		 +' <option  value="0">Select Error type </option>'
 		 +' <option  value="0"> Sensor Displacement </option>'
 		 +'  <option value="1">Sensor Saturation</option>'
-		 +'  <option value="2">Overloading because of cold water supply</option>'
+		 +'  <option value="2">Overloading because of cold watwe supply</option>'
 		
 		 +'  </select>'
 		 +'<div class="col-sm-12 ">'
@@ -145,10 +144,11 @@ $("#centerText1").html("SHAFT TORUE DIAGRAM");
     			$("#main-div-conf").html("");
     			 $("#canvas-div").html("");
     			 $("#alertMsgBox").attr('hidden',true);
-    			
+    			 fault.fault = ent;
+    			 data.Fault = fault;
     			 
 //    			 resultAnalysis();
-    			 $("#main-div").html("<b class='errorMsgf col-sm-12 '>Congratulations. experiment completed successfully </b>");
+    			 $("#main-div").html("<b class='errorMsgf col-sm-12 '> Congratulation, You have completed experiment sucessfully .</b>");
     		}
     		else{
     			$("#alertMsgBox").attr('hidden',false);
