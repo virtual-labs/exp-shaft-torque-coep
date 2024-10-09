@@ -88,11 +88,12 @@ function tableCreateForFualtFinding1()
 
  var randomNumber;
  var ent = 0;
+ fault = {};
 function fualtFinding()
 {
 	
 $("#centerText1").html("SHAFT TORUE DIAGRAM");
-	 $("#centerText2").html("FUALT FINDING ");
+	 $("#centerText2").html("FAULT FINDING ");
 	$("#main-div-conf").html("");
 	 $("#canvas-div").html("");
 	 
@@ -109,8 +110,8 @@ $("#centerText1").html("SHAFT TORUE DIAGRAM");
 		+'</div>'
 		 
 		 +'<div class="col-sm-12">'
-		 +' <select  class="form-control col-sm-12" id="errorSelection">'
-//		 +' <option  value="0">Select Error type </option>'
+		 +' <select  class="form-control col-sm-12" id="errorSelection" style="height:40px;">'
+		 +' <option  value="">Select Error type </option>'
 		 +' <option  value="0"> Sensor Displacement </option>'
 		 +'  <option value="1">Sensor Saturation</option>'
 		 +'  <option value="2">Overloading because of cold water supply</option>'
@@ -138,6 +139,9 @@ $("#centerText1").html("SHAFT TORUE DIAGRAM");
 	
     $("#errorSelection").change(function() {
 		ent++;
+		fault = ent;
+		data.Fault = fault;
+		console.log(data);
     	var selectedOption=$("#errorSelection").val();
     	console.log("selectedOption   "+selectedOption);
 //    	if(counter<=3){
@@ -147,8 +151,8 @@ $("#centerText1").html("SHAFT TORUE DIAGRAM");
     			 $("#alertMsgBox").attr('hidden',true);
     			
     			 
-//    			 resultAnalysis();
-    			 $("#main-div").html("<b class='errorMsgf col-sm-12 '>Congratulations. experiment completed successfully </b>");
+    			 result();
+//    			 $("#main-div").html("<b class='errorMsgf col-sm-12 '>Congratulations. experiment completed successfully </b>");
     		}
     		else{
     			$("#alertMsgBox").attr('hidden',false);

@@ -1,5 +1,6 @@
 function calibration()
-	{
+	{	
+		calibration = {};
 		htm='';
 			htm+='<div class="card" id="calibrationDiv">'
 			+'  <div class="card-header  text-black" style="font-size:20px;"><center>CALIBRATION</center></div>'
@@ -153,7 +154,7 @@ function calibration()
  +'</div>'
  +'</div>'
  +'<div class="row " id="nextFaultFindingDiv" >'
-	+'<button type="button" class="col-sm-12 btn btn-danger" style="margin-top:20px;" id="testing">Next Level</button>'
+	+'<button type="button" class="col-sm-12 btn btn-danger" style="margin-top:20px;" id="testing" hidden>Next Level</button>'
 	+'</div>'
  $("#canvas-div1").append(algo);
 	
@@ -168,7 +169,8 @@ function calibration()
 					 
 					  +'</div>'
 					  $("#main-div-conf").html(htm);
-				CalculateActualFlowStr = '<div class="col-sm-3">'
+				CalculateActualFlowStr = '<div id = "tst" > '
+					+'<div class="col-sm-4">'
 				       +'<label  id=""  class="" style="font-size:16px;margin-top:35px;">Expected Toque is :</label>'
 				       +'</div>'
 			           +'<div class="col-sm-4">'
@@ -177,22 +179,28 @@ function calibration()
 				       +'<div class="col-sm-4">'
 				       +'<br><button type="submit" id="btnAnsCheck" style="margin-top:10px;width:100%;" class=" btn btn-primary" data-toggle="modal" data-target="#mimicModel" disabled>Submit</button>'
 				       +'</div>'
+				       +'</div>'
 				      
 				 $("#CalculateActualFlow").html(CalculateActualFlowStr);
 				$("#canvas-div").html("");
 				$("#canvas-div1").html("");
+				data.calibration = calibration;
 				testing(); 
 			});
 			
 			
 			AnswerCounter = 0;
+			zero = 0;
 			var length= masterJson.demo.length-1;
 			$("#zeroSubmit").click(function() {
+				zero++;
+				calibration.zero = zero;
 				var max=masterJson.demo[0].torque_corr;
 				var min=masterJson.demo[0].torque_err;
 				var ans=min-max;
 				console.log("min    "+min);
 				var ans1=ans.toFixed(2);
+					ans1 = parseFloat(ans1);
 				if($("#zeroText").val()==""){
 					alert("	Enter numerical value ");
 				}
@@ -233,13 +241,16 @@ function calibration()
 				
 			});
 			spanCounter=0;
+			span = 0;
 			$("#spanSubmit").click(function() {
+				span++;
+				calibration.span = span;
 				var max=masterJson.demo[length].torque_corr;
 				var min=masterJson.demo[length].torque_err;
 				var ans=min-max;
 				console.log("min    "+min);
 				var ans1=ans.toFixed(2);
-				
+					ans1 = parseFloat(ans1);
 				console.log("span Answer   "+ans1);
 				if($("#spanText").val()==""){
 					alert("	Enter numerical value ");
@@ -283,9 +294,10 @@ function calibration()
 			
 			
 			linearCounter=0;
-			
+			linear = 0;
 			$("#linearSubmit").click(function() {
-				
+			linear++;
+			calibration.linear = linear;	
 				
 			var sum=0;
 			var sum1=0;
@@ -348,7 +360,7 @@ function calibration()
 	
 			var linearity=C/(A*B);
 			var linearity1=linearity.toFixed(2);
-	
+				linearity1 = parseFloat(linearity1);
 			console.log("linearity1   "+linearity1);
 			var textLineralityeError=$("#linearText").val();
 			if (linearCounter < 3) {
@@ -389,8 +401,10 @@ function calibration()
 		});
 			accuracyCounter=0;
 			var accurance=1;
+			accuracy =  0;
 		$("#accuracySubmit").click(function() {
-			
+			accuracy ++;
+			calibration.accuracy = accuracy;
 			var length=masterJson.demo.length;
 			var sum=0;
 			var minus=0;
@@ -449,13 +463,13 @@ function calibration()
 									 $("#plusMinusCalibrationZero").html("");
 									 
 									 temp= parseFloat(masterJson.demo[i].torque_err).toFixed(2);
-										ydataPulse[i]=parseFloat(masterJson.demo[i].torque_err)=temp;
+										ydataPulse[i]=(masterJson.demo[i].torque_err)=temp;
 								
 							 }
 							 
 							 else{
 								 temp= parseFloat(masterJson.demo[i].torque_err)+0.01;
-								ydataPulse[i]=parseFloat(masterJson.demo[i].torque_err)=temp;
+								ydataPulse[i]=(masterJson.demo[i].torque_err)=temp;
 								
 							 }
 						}	
@@ -509,9 +523,9 @@ function calibration()
 			
 			
 			$("#plusMax").click(function() {
-				
+				console.log("zero again");
 				var ydataPulse=[];
-				var temp1=parseFloat(masterJson.demo[length].torque_err).toFixed(2);
+				var temp1=parseFloat(masterJson.demo[length].torque_err);
 				var temp2=masterJson.demo[length].torque_corr;
 				
 				var actualSpan=temp1;
@@ -574,12 +588,14 @@ function calibration()
 		        
 		       
 				 rotate-=1;
+				 
+//				 });
 				 $("#plus2").click(function() {
 						var ydataPulse=[];
 						var length= masterJson.demo.length-1;
 						console.log("plusssssssssssssss");
 						$("#knob2").css({ transform: 'rotate('+rotate+'deg)' });
-						var actualSpan =parseFloat(masterJson.demo[0].torque_err).toFixed(2);
+						var actualSpan =parseFloat(masterJson.demo[0].torque_err);
 						var stdSpan=masterJson.demo[0].torque_corr;
 
 						 console.log(" span std "+stdSpan+" actual "+actualSpan);
@@ -606,15 +622,15 @@ function calibration()
 									 }
 									 
 									 else{
-										 temp= parseFloat(masterJson.demo[i].torque_err)+0.01;
-										ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp).toFixed(2);
+										 temp= parseFloat(masterJson.demo[i].torque_err)+0.001;
+										ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp);
 										
 									 }
 								}
 									else
 									{
 									temp= parseFloat(masterJson.demo[i].torque_err);
-									ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp).toFixed(2);
+									ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp);
 									}
 							}
 							
@@ -630,7 +646,7 @@ function calibration()
 						var ydataPulse=[];
 						var length= masterJson.demo.length-1;
 						$("#knob2").css({ transform: 'rotate('+rotate+'deg)' });
-						var actualSpan =parseFloat(masterJson.demo[0].torque_err).toFixed(2);
+						var actualSpan =parseFloat(masterJson.demo[0].torque_err);
 						var stdSpan=masterJson.demo[0].torque_corr;
 						console.log("minusssssssssssss");
 						 console.log(" span std "+stdSpan+" actual "+actualSpan);
@@ -657,8 +673,8 @@ function calibration()
 									 }
 									 
 									 else{
-										 temp= parseFloat(masterJson.demo[i].torque_err)-0.01;
-										ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp).toFixed(2);
+										 temp= parseFloat(masterJson.demo[i].torque_err)-0.001;
+										ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp);
 										
 									 }
 								}
@@ -707,8 +723,8 @@ function calibration()
 //								   $('#zeroErrorAlert').html('');
 								   $('#errorZeroAlert').attr('hidden',true);
 //								   console.log("when set value std minus "+stdSpan);
-								temp= parseFloat(masterJson.demo[i].torque_err).toFixed(2);
-									ydataPulse[i]=parseFloat(masterJson.demo[i].torque_err)=temp;
+								temp= (masterJson.demo[i].torque_err).toFixed(2);
+									ydataPulse[i]=(masterJson.demo[i].torque_err)=temp;
 									htm=''
 										htm+='<div class="panel panel-primary"  id="zeroPanel2">'
 									     
@@ -734,7 +750,7 @@ function calibration()
 							 }
 							 
 							 else{
-								 temp= parseFloat(masterJson.demo[i].torque_err)-0.01;
+								 temp= parseFloat(masterJson.demo[i].torque_err)-0.001;
 								ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp);
 								
 							 }
@@ -746,7 +762,119 @@ function calibration()
 		        
 		       
 				 rotate+=10;
+			
+			
+			
+			
+			// zero again 
+			
+			 $("#plus2").click(function() {
+						var ydataPulse=[];
+						var length= masterJson.demo.length-1;
+						console.log("plusssssssssssssss");
+						$("#knob2").css({ transform: 'rotate('+rotate+'deg)' });
+						var actualSpan =parseFloat(masterJson.demo[0].torque_err);
+						var stdSpan=masterJson.demo[0].torque_corr;
+
+						 console.log(" span std "+stdSpan+" actual "+actualSpan);
+						
+						 
+						 
+							for(i=0;i< masterJson.demo.length;i++)
+							{
+//								var errorAdd= parseFloat(masterJson.demo[i].torque_err)/5;
+//						          console.log("Error add "+errorAdd);	
+								if(length!=i){
+									 if(stdSpan==actualSpan ) 
+									 {
+										    
+										 $("#zero2").html("");
+										   $('#zeroAlert2').removeAttr('hidden');
+										   $("#zeroBoth").removeAttr('hidden',false);
+										   $("#algo1").removeAttr('hidden',false);
+										   $('#errorZeroAlert2').attr('hidden',true);
+										   
+										 temp= parseFloat(masterJson.demo[i].torque_err).toFixed(2);
+											ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp);
+										
+									 }
+									 
+									 else{
+										 temp= parseFloat(masterJson.demo[i].torque_err)+0.01;
+										ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp);
+										
+									 }
+								}
+									else
+									{
+									temp= parseFloat(masterJson.demo[i].torque_err);
+									ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp);
+									}
+							}
+							
+							
+						var chart = $('#canvas-div').highcharts();
+				        chart.series[1].setData(ydataPulse, false);
+				        $('#canvas-div').highcharts().redraw();
+				        rotate+=1;
+				       
+						
+					});
+				 $("#minus2").click(function() {
+						var ydataPulse=[];
+						var length= masterJson.demo.length-1;
+						$("#knob2").css({ transform: 'rotate('+rotate+'deg)' });
+						var actualSpan =parseFloat(masterJson.demo[0].torque_err);
+						var stdSpan=masterJson.demo[0].torque_corr;
+						console.log("minusssssssssssss");
+						 console.log(" span std "+stdSpan+" actual "+actualSpan);
+						
+						 
+						 
+							for(i=0;i< masterJson.demo.length;i++)
+							{
+//								var errorAdd= parseFloat(masterJson.demo[i].torque_err)/8;
+//						          console.log("Error add "+errorAdd);
+								if(length!=i){
+									 if(stdSpan==actualSpan)
+									 {
+										    
+										 $("#zero2").html("");
+										   $('#zeroAlert2').removeAttr('hidden');
+										   $('#zeroBoth').removeAttr('hidden');
+										   $("#algo1").removeAttr('hidden');
+										   $('#nextDiv').attr('hidden',true);
+										   $('#errorZeroAlert2').attr('hidden',true);
+										 temp= parseFloat(masterJson.demo[i].torque_err).toFixed(2);
+											ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp);
+										
+									 }
+									 
+									 else{
+										 temp= parseFloat(masterJson.demo[i].torque_err)-0.01;
+										ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp);
+										
+									 }
+								}
+									else
+									{
+									temp= parseFloat(masterJson.demo[i].torque_err).toFixed(2);
+									ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp);
+									}
+							}
+							
+							
+						var chart = $('#canvas-div').highcharts();
+				        chart.series[1].setData(ydataPulse, false);
+				        $('#canvas-div').highcharts().redraw();
+				        rotate-=1;
+				       
+						
+					});
+			
+			
 			});
+			
 			$("#minusAlgo1").click(function() {
 				var greaterCounter=0;
 				var ydataPulse=[];
@@ -975,9 +1103,9 @@ function calibration()
 					
 					
 					$("#algo2Panel").html("");
-					$("#algo3").removeAttr('hidden');
-					$("#msgAlgo2").removeAttr('hidden');
-					$("#msgAlgo2Error").removeAttr('hidden');
+					$("#algo3").removeAttr('hidden',false);
+					$("#msgAlgo2").removeAttr('hidden',false);
+					$("#msgAlgo2Error").removeAttr('hidden',false);
 				}
 
 						 var chart = $('#canvas-div').highcharts();
@@ -1042,7 +1170,7 @@ function calibration()
 				   
 						else if(actualSpan>stdSpan)
 						{
-							temp=parseFloat(masterJson.demo[i].torque_err)-0.02;
+							temp=parseFloat(masterJson.demo[i].torque_err)-0.01;
 							ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp);
 							
 
@@ -1064,10 +1192,14 @@ function calibration()
 				    	}
 					if(greaterCounter==0)
 								{
-						alert("Successfully done");
+						console.log("Successfully done");
 //						$("#main-div-conf").html("");
-						$("#main-div").html("done");
+//						$("#main-div").html("done");
 //						$("#algoPanel").html("");
+//						$("#msgAlgo2").removeAttr('hidden',false);
+						$("#testing").prop("hidden",false);
+						$("#msgAlgo3").removeAttr('hidden',false);
+						$("#msgAlgo2Error").removeAttr('hidden',true);
 						
 //						console.log("greaterCounter "+greaterCounter);
 //								$("#linearAlgo3").hide();
@@ -1079,9 +1211,9 @@ function calibration()
 					}
 
 				}
-						var chart = $('#container-graph1').highcharts();
-				        chart.series[1].setData(ydataPulse, false);
-				        $('#container-graph1').highcharts().redraw();
+//						var chart = $('#container-graph1').highcharts();
+//				        chart.series[1].setData(ydataPulse, false);
+//				        $('#container-graph1').highcharts().redraw();
 						 rotate-=10; 
 					
 				});
