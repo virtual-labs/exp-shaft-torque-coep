@@ -5,6 +5,8 @@ function testing() {
 	$('#canvas-div').removeAttr('height');
 	var w = 1000;
 	var h = 800;
+		$("#centerText2").html('SHAFT TORQUE CHARACTERIZATION DIAGRAM');
+		 $("#centerText1").html('CALCULATION');
 
 	var width = $(window).width();
 
@@ -338,13 +340,15 @@ function testing() {
 					
 					if  (wt < wt_max )
 					{
-					torque_corr = (9.8 * length) * (wt / 1000);
+					torque_corr = ((9.8 * length) * (wt / 1000)).toFixed(2);
+					torque_corr = parseFloat(torque_corr);
 					flag = 0;
 					flag_err = 0;
 					}
 					else if (wt > wt_max )
 					{
-					torque_corr = (9.8 * length) * (wt / 1000);
+					torque_corr = ((9.8 * length) * (wt / 1000)).toFixed(2);
+						torque_corr = parseFloat(torque_corr);
 					flag = 1;
 					flag_err = 0;
 					count_er++;
@@ -373,7 +377,8 @@ function testing() {
 		}
 			else if (rpm != speed && flag_err == 0) {
 				if (wt == 1) {
-					torque_corr = (9.8 * length) * (wt / 1000);
+					torque_corr = ((9.8 * length) * (wt / 1000)).toFixed(2);
+					torque_corr = parseFloat(torque_corr);
 					flag = 0;
 					checkAns = 1;
 					flag_err = 0;
@@ -392,7 +397,8 @@ function testing() {
 			}
 			else if (rpm == speed && flag_err == 1){
 					if (wt == 1) {
-					torque_corr = (9.8 * length) * (wt / 1000);
+					torque_corr = ((9.8 * length) * (wt / 1000)).toFixed(2);
+					torque_corr = parseFloat(torque_corr);
 					flag = 0;
 					checkAns = 1;
 					flag_err = 0;
@@ -476,12 +482,12 @@ function testing() {
 	});
 	var torEnt = 0;
 	$("#btnAnsCheck").click(function() {
-		
+		torEnt++;
 		 testing.torExp = motEnt;
 		 testing.torAct = torEnt;
 		var speedAns = $("#speedAns").val().trim();
 		console.log("ans check" + speedAns);
-		flow = torque_corr.toFixed(2);
+		flow = torque_corr;
 		if (id <= 3) {
 			if (speedAns == flow) {
 				checkAns = 0;
@@ -534,7 +540,7 @@ function testing() {
 
 	function tableCreate() {
 		speedJson = {};
-		speedJson.torque_corr = torque_corr.toFixed(2);
+		speedJson.torque_corr = torque_corr;
 		speedJson.torque_err = torque.toFixed(2);
 		speedJson.load = wt;
 		speedJson.RPM = speed1;
@@ -611,6 +617,7 @@ function testing() {
 				if (checkAlert == 0) {
 //					$("#calibration").removeAttr("hidden",false);
 					$("#showGraph").attr("hidden",true);
+					$("#tst").attr("hidden",true);
 					graphCreate();
 					data.Testing = testing;
 					console.log(data);
@@ -737,6 +744,8 @@ function testing() {
 			.attr({ 'stroke': 'black', 'stroke-width': '2', 'fill': '#64b8e8' });
 		paper.path('M' + (x + 170) + ' ' + (y + 150) + 'l 0 0 l 0 -10  l 0 100 l 0 0 l 0 0 l  0 0 l 0 0 l 0 0')
 			.attr({ 'stroke': 'black', 'stroke-width': '2', 'fill': 'black' });
+				paper.path('M' + (x + 210) + ' ' + (y + 195) + 'l 100 0 l 0 0  l 0 0 l 0 0 l 0 0 l  0 0 l 0 0 l 0 0')
+			.attr({ 'stroke': 'black', 'stroke-width': '7', 'fill': 'black' });
 	}
 
 

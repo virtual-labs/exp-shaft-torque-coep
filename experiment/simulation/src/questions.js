@@ -94,7 +94,8 @@
 						dataQues.corrAns = ansCount;
 						 data.corrAns = dataQues;
 						 console.log(data);
-						alert("Test Submitted Successfully <br/>Correct Answers Are : " + ansCount);
+						alert("Test Submitted Successfully. Correct Answers Are : " + ansCount);
+						$("#testSubmit").prop('disabled',true);
 //						mimic();
 		   					
 					}
@@ -108,7 +109,8 @@
 					 
 					  +'</div>'
 					  $("#main-div-conf").html(htm);
-				CalculateActualFlowStr = '<div class="col-sm-3">'
+				CalculateActualFlowStr = '<div id ="tstAns">'
+						+'<div class="col-sm-4">'
 				       +'<label  id=""  class="" style="font-size:16px;margin-top:35px;">Expected Toque is :</label>'
 				       +'</div>'
 			           +'<div class="col-sm-4">'
@@ -117,12 +119,14 @@
 				       +'<div class="col-sm-4">'
 				       +'<br><button type="submit" id="btnAnsCheck" style="margin-top:10px;width:100%;" class=" btn btn-primary" data-toggle="modal" data-target="#mimicModel" disabled>Submit</button>'
 				       +'</div>'
+				       +'</div>'
 				      
 				 $("#CalculateActualFlow").html(CalculateActualFlowStr);	 
 		 
 		  
 		  $("#canvas-div").html("");
 		  	$("#centerText2").html('SHAFT TORQUE CHARACTERIZATION DIAGRAM');
+		  	$("#centerText1").html('CALCULATION');
 		  
 						mimic();
 //						testing();	
