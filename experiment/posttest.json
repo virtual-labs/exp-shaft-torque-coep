@@ -27,28 +27,52 @@
     },
 	
 	{
-      "question": "The shaft torque of a dc motor is less than its armature torque because of",
+      "question": "How does a torque transducer typically measure torque?",
       "answers": {
-        "a": "Rotational losses",
-        "b": "Copper losses",
-        "c": "Mechanical losses",
-        "d": "Back emf"
+        "a": "A) By converting force into displacement",
+        "b": "By measuring the angle of rotation",
+        "c": "By converting strain into an electrical signal",
+        "d": "By measuring pressure changes"
+      },
+     
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+	
+	{
+      "question": "What effect does shaft misalignment have on torque measurement?",
+      "answers": {
+        "a": "It increases accuracy",
+        "b": "It has no effect",
+        "c": "It can cause measurement errors",
+        "d": "It reduces the rotational speed"
+      },
+     
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+	{
+      "question": "Which of the following is a typical application of torque measurement?",
+      "answers": {
+        "a": "Wind turbine performance analysis",
+        "b": "Measuring fluid flow",
+        "c": "Measuring temperature changes",
+        "d": "Calculating voltage drop in a circuit"
       },
      
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
-	
 	{
-      "question": "Under constant load condition, the speed of a dc motor is effected by",
+      "question": "Which of the following is a challenge in high-speed shaft torque measurement?",
       "answers": {
-        "a": "Field flux alone",
-        "b": "Armature current alone",
-        "c": "Back emf",
-        "d": "Both armature current and field flux"
+        "a": "Difficulty in attaching strain gauges",
+        "b": "Maintaining signal accuracy due to shaft vibration",
+        "c": "Torque sensors becoming uncalibrated at high speed",
+        "d": "Excessive heat generation in the sensors"
       },
      
-      "correctAnswer": "a",
+      "correctAnswer": "b",
       "difficulty": "beginner"
     }
   ]

@@ -1,21 +1,21 @@
 # Procedure:- 
 
 ### Configuration:-
-- select motor size , arm length and check/click the configuration button. (we are considering standard single phase motor sizes).
-- click on next level 
+- Select motor size , arm length and check/click the configuration button. (we are considering standard single phase motor sizes).
+- Click on next level 
 
 ### Basic Knowledge - 
 - Answer all the questions and click on next level.
 
 ### Part A-
 - Start the cold water pump for cooling system.
-- start the induction motor with no load condition and check the torque sensor reading.
-- calculate the standard torque (upto two decimals) for no load condition and submit the answer.
-- load the weight , start induction motor and check the sensor torque reading.
-- calculate the standard torque (upto two decimals) for load condition and submit the answer.
+- Start the induction motor with no load condition and check the torque sensor reading.
+- Calculate the standard torque (upto two decimals) for no load condition and submit the answer.
+- Load the weight , start induction motor and check the sensor torque reading.
+- Calculate the standard torque (upto two decimals) for load condition and submit the answer.
 - Repeat the same process for loading the till the maximun weights.
 - Observe the reading , calculate the standard torque for every observation and submit the answer.
-- plot the graph by clicking on "show graph" button after taking atleast 5-6 readings.
+- Plot the graph by clicking on "show graph" button after taking atleast 5-6 readings.
 
 
 
@@ -30,13 +30,13 @@
 
 ### Part B - 
 - Start the cold water pump for cooling system.
-- select the speed of the motor and weight.
-- start the induction motor with loading condition and check the torque sensor reading.
-- calculate the standard torque for loading condition and submit the answer.
+- Select the speed of the motor and weight.
+- Start the induction motor with loading condition and check the torque sensor reading.
+- Calculate the standard torque for loading condition and submit the answer.
 - Repeat the above process , increasing maximun loading weights with same speed.
-- plot the graph by clicking on "show graph" button after 5-6 readings and observe the characterisation graph.
+- Plot the graph by clicking on "show graph" button after 5-6 readings and observe the characterisation graph.
 (while changing the speed of motor, start loading the motor with minimum to maximum weight.) 
-- click on "Next level" button to go next level.
+- Click on "Next level" button to go next level.
 
 ### Fault Finding:
 1. Observe the shown table and select the fault accordingly.

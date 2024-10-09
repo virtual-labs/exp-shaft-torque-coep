@@ -45,7 +45,7 @@ QuestionsJSON = {
 
 				"QUES": [{
 					
-					"QC": "Which material is suitable for shaft material?",
+					"QC": "Which material is suitable for shaft?",
 					"ANS": [{
 						"ANSID": true,
 						"content": "Steel having approx. 0.4% carbon and 0.8% manganese"

@@ -353,12 +353,14 @@ function mimic() {
 				if (wt >= 1) {
 					if  (wt < wt_max )
 					{
-					torque_corr = (9.8 * length) * (wt / 1000);
+					torque_corr = ((9.8 * length) * (wt / 1000)).toFixed(2);
+					torque_corr = parseFloat(torque_corr);
 					flag = 0;
 					}
 					else if (wt > wt_max )
 					{
-					torque_corr = (9.8 * length) * (wt / 1000);
+					torque_corr = ((9.8 * length) * (wt / 1000)).toFixed(2);
+					torque_corr = parseFloat(torque_corr);
 //					flag = 1;
 					count_er++;
 					
@@ -370,7 +372,8 @@ function mimic() {
 					console.log("torque with load " + torque_corr);
 				}
 				else if (wt == 0) {
-					torque_corr = (power * 9.5488 * 1000) / speed;
+					torque_corr = ((power * 9.5488 * 1000) / speed).toFixed(2);
+					torque_corr = parseFloat(torque_corr);
 					flag = 0;
 					checkAns = 1;
 
@@ -549,7 +552,7 @@ function mimic() {
 
 		var speedAns = $("#speedAns").val().trim();
 		console.log("ans check" + speedAns);
-		flow = torque_corr.toFixed(2);
+		flow = torque_corr;
 		if (id <= 3) {
 			if(speedAns=="")
 			{
@@ -613,7 +616,7 @@ function mimic() {
 
 	function tableCreate() {
 		speedJson = {};
-		speedJson.torque_corr = torque_corr.toFixed(2);
+		speedJson.torque_corr = torque_corr;
 		speedJson.torque_err = torque.toFixed(2);
 		speedJson.load = wt;
 		speedJson.RPM = speed;
@@ -700,8 +703,12 @@ function mimic() {
 					$("#showGraph").attr("hidden",true);
 					data.Mimic = mimic;
 					console.log(data);
+					$("#tstAns").attr("hidden",true);
+					$("#centerText2").html('GRAPH');
+		  			$("#centerText1").html('TABLE');
 					graphCreate();
 					calibration();
+					
 					
 					
 				}
@@ -844,6 +851,8 @@ function mimic() {
 			.attr({ 'stroke': 'black', 'stroke-width': '2', 'fill': '#64b8e8' });
 		paper.path('M' + (x + 170) + ' ' + (y + 150) + 'l 0 0 l 0 -10  l 0 100 l 0 0 l 0 0 l  0 0 l 0 0 l 0 0')
 			.attr({ 'stroke': 'black', 'stroke-width': '2', 'fill': 'black' });
+		paper.path('M' + (x + 210) + ' ' + (y + 195) + 'l 100 0 l 0 0  l 0 0 l 0 0 l 0 0 l  0 0 l 0 0 l 0 0')
+			.attr({ 'stroke': 'black', 'stroke-width': '7', 'fill': 'black' });	
 	}
 
 

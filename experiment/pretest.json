@@ -37,26 +37,26 @@
 	
 	
 	{
-      "question": "The standard length of the shaft is",
+      "question": "What is torque in the context of a rotating shaft?",
       "answers": {
-        "a": "5 m",
-        "b": "6 m",
-        "c": "7 m",
-        "d": "all of these"
+        "a": "Force applied perpendicular to the shaft",
+        "b": "Rotational speed of the shaft",
+        "c": "The twisting force that causes rotation",
+        "d": "Linear displacement of the shaft"
       },
-      "correctAnswer": "d",
+      "correctAnswer": "c",
       "difficulty": "beginner"
     },
 	
 	{
-      "question": "The armature torque of a dc motor is a function of its",
+      "question": "What device is commonly used to measure shaft torque?",
       "answers": {
-        "a": "Both field flux and armature current",
-        "b": "Field flux alone",
-        "c": "Armature current along",
-        "d": "Speed alone"
+        "a": "Dynamometer",
+        "b": "Tachometer",
+        "c": "Torque sensor or transducer",
+        "d": "Accelerometer"
       },
-      "correctAnswer": "a",
+      "correctAnswer": "c",
       "difficulty": "beginner"
     }
 	
