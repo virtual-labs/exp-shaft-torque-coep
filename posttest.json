@@ -1,0 +1,79 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "Which property is not required for shaft materials?",
+      "answers": {
+        "a": "Good castability",
+        "b": "High fatigue strength",
+        "c": "Good machinability",
+        "d": "High shear and tensile strength"
+      },
+     
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "The product of the tangential force acting on the shaft and its distance from the axis of the shaft (i.e. the radius of the shaft) is known as",
+      "answers": {
+        "a": "torsional rigidity",
+        "b": "flexural rigidity ",
+        "c": "twisting moment",
+        "d": "bending moment"
+      },
+     
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+	
+	{
+      "question": "How does a torque transducer typically measure torque?",
+      "answers": {
+        "a": "A) By converting force into displacement",
+        "b": "By measuring the angle of rotation",
+        "c": "By converting strain into an electrical signal",
+        "d": "By measuring pressure changes"
+      },
+     
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+	
+	{
+      "question": "What effect does shaft misalignment have on torque measurement?",
+      "answers": {
+        "a": "It increases accuracy",
+        "b": "It has no effect",
+        "c": "It can cause measurement errors",
+        "d": "It reduces the rotational speed"
+      },
+     
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+	{
+      "question": "Which of the following is a typical application of torque measurement?",
+      "answers": {
+        "a": "Wind turbine performance analysis",
+        "b": "Measuring fluid flow",
+        "c": "Measuring temperature changes",
+        "d": "Calculating voltage drop in a circuit"
+      },
+     
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+	{
+      "question": "Which of the following is a challenge in high-speed shaft torque measurement?",
+      "answers": {
+        "a": "Difficulty in attaching strain gauges",
+        "b": "Maintaining signal accuracy due to shaft vibration",
+        "c": "Torque sensors becoming uncalibrated at high speed",
+        "d": "Excessive heat generation in the sensors"
+      },
+     
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    }
+  ]
+}

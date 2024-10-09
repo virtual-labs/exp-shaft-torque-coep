@@ -1,0 +1,64 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "When a solid shaft is subjected to a torsion, the shear stress induced in the shaft at its center is",
+      "answers": {
+        "a": "minimum",
+        "b": "maximum",
+        "c": "zero",
+        "d": "average"
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "The design of shafts made of brittle materials is based on",
+      "answers": {
+        "a": "Rankine's theory",
+        "b": "Guest's theory",
+        "c": "St Venant's theory",
+        "d": "VonMises theory"
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "When a shaft is subjected to a twisting moment, every cross-section of the shaft will be under",
+      "answers": {
+        "a": "tensile stress",
+        "b": "shear stress ",
+        "c": "compressive stress",
+        "d": "bending stress"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+	
+	
+	{
+      "question": "What is torque in the context of a rotating shaft?",
+      "answers": {
+        "a": "Force applied perpendicular to the shaft",
+        "b": "Rotational speed of the shaft",
+        "c": "The twisting force that causes rotation",
+        "d": "Linear displacement of the shaft"
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+	
+	{
+      "question": "What device is commonly used to measure shaft torque?",
+      "answers": {
+        "a": "Dynamometer",
+        "b": "Tachometer",
+        "c": "Torque sensor or transducer",
+        "d": "Accelerometer"
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    }
+	
+  ]
+}
