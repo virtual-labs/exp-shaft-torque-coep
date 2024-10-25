@@ -19,7 +19,7 @@ function mimic() {
 		paper.setSize('90%', '90%');
 	}
 
-
+	$("#refer").prop("hidden",false);
 	x = 50;
 	y = 50;
 	wt = 0;
@@ -229,12 +229,12 @@ function mimic() {
 			{ 
 				alert("Max limit");
 			}
-//			else 
-//			{
+			else 
+			{
 //				alert("Please select the another configuration");
-////				location.reload();
-//			}
-//			 
+//				location.reload();
+			}
+		 
 
 		}
 		else {
@@ -556,7 +556,8 @@ function mimic() {
 		if (id <= 3) {
 			if(speedAns=="")
 			{
-			alert("Enter numerical value ");
+			 $("#modelMsg").html("<b class='boldTextRed'>Enter numerical value</b>");
+				 $("body").css("padding","0px 0px 0px 0px");
 			}
 			else if (speedAns == flow) {
 				checkAns = 0;
@@ -572,7 +573,8 @@ function mimic() {
 			}
 			else if (speedAns != flow) {
 
-				alert("Entered value is incorrect.Try it again ");
+				$("#modelMsg").html("<b class='boldTextRed'>Entered value is incorrect.Try again . </b>");
+				 $("body").css("padding","0px 0px 0px 0px");
 
 
 			}
@@ -580,14 +582,18 @@ function mimic() {
 
 		} else if (id == 4) {
 
-				alert("Torque = Power X 9.5488 / Speed - for no load condition"
-				+" Torque = F X r - for load condition")
+				
+				$("#modelMsg").html("<b class='boldTextRed'>Torque = Power X 9.5488 / Speed - for no load condition"
+				+" Torque = F X r - for load condition </b>");
+				 $("body").css("padding","0px 0px 0px 0px");
 
 		} else {
 			speedAns = $("#speedAns").val().trim();
 			if(speedAns=="")
 			{
-			alert("Enter numerical value ");
+			
+			 $("#modelMsg").html("<b class='boldTextRed'>Enter numerical value</b>");
+				 $("body").css("padding","0px 0px 0px 0px");
 			}
 			else if (speedAns == flow) {
 				checkAns = 0;
@@ -603,7 +609,8 @@ function mimic() {
 				event.stopPropagation();
 			} else {
 				checkAns = 0;
-				alert("correct answer is " + flow);
+				 $("#modelMsg").html("<b class='boldTextRed'>Correct answer is " + flow+"</b>");
+				 $("body").css("padding","0px 0px 0px 0px");
 
 			}
 		}
@@ -676,7 +683,7 @@ function mimic() {
 			}
 		$("#showGraph").click(function() {
 			
-		if (masterJson.demo.length >= 4) {
+		if (masterJson.demo.length >= 2) {
 				if (array[0] != 0 && array[array.length - 1] != weight_max)
 				{
 					checkAlert = 1; 
@@ -765,6 +772,8 @@ function mimic() {
 				console.log("Ymax " + Ymax);
 				console.log(" Standard Torque v/s Actual Torque " + graphData1);
 				Highcharts.chart('canvas-div', {
+					exporting: { enabled: true },
+					credits: { enabled: false},
 					title: {
 						text: ' Graph of Standard Torque & Actual Torque '
 					},

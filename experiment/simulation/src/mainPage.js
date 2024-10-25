@@ -40,7 +40,7 @@ var htm='<div class="row" >'
 	   
 	   +'<div class="col-sm-6">'
 	   +'<select  class="form-control form-control-lg  selectStyle"  id="lengthType">'
-	   +'<option value="0" selected>--- Select meter --- </option>'
+	   +'<option value="0" selected>--- Select Length --- </option>'
 	   +'<option value="1" >103.94</option>'
 	   +'<option value="2">203.94</option>'
 	   +'<option value="3">303.94</option>'
@@ -139,5 +139,18 @@ var htm='<div class="row" >'
 				
 
 	   });
+	   
+	   $("#refer").click(function() { 
+
+	var refer = '';
+	refer += ''
+	+ '<h3> Configuration</h3>'
+	+ '<ol><li> Selected  motor size is '+motorSize+''
+	+ '<li> Selected Arm Length is '+lengthType+'  </ol>'
+	
+	$(".modal-body12").html('');
+	$(".modal-body12").html(refer);
+	
+	});
 	   
 	

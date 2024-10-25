@@ -14,7 +14,7 @@ function calibration()
 			+' <div class="card-body">'
 			+'<input type="text" class="form-control" id="zeroText"/>'
 			+'<br>'
-			 +'<button type="button"   class="btn btn-danger btnStyle" id="zeroSubmit"  ><b> SUBMIT </b></button>'
+			 +'<button type="button"   class="btn btn-danger btnStyle" id="zeroSubmit" data-toggle="modal" data-target="#myModal" ><b> SUBMIT </b></button>'
 			+'</div> '
 			//+' <div class="card-footer">Formula : Minimum Actual Flow - Minimum Standard Flow </div>'
 			+' </div>'
@@ -26,7 +26,7 @@ function calibration()
 			+' <div class="card-body">'
 			+'<input type="text" class="form-control" id="spanText" />'
 			+'<br>'
-			 +'<button type="button"   class="btn btn-danger btnStyle" id="spanSubmit"  ><b> SUBMIT </b></button>'
+			 +'<button type="button"   class="btn btn-danger btnStyle" id="spanSubmit" data-toggle="modal" data-target="#myModal" ><b> SUBMIT </b></button>'
 				
 			+'</div> '
 		//	+' <div class="card-footer">Formula :Maximum Actual Flow - Maximum Standard Flow</div>'
@@ -39,7 +39,7 @@ function calibration()
 			+' <div class="card-body">'
 			+'<input type="text" class="form-control" id="linearText"/>'
 			+'<br>'
-			 +'<button type="button"   class="btn btn-danger btnStyle" id="linearSubmit"  ><b> SUBMIT </b></button>'
+			 +'<button type="button"   class="btn btn-danger btnStyle" id="linearSubmit" data-toggle="modal" data-target="#myModal"  ><b> SUBMIT </b></button>'
 			+'</div> '
 			//+' <div class="card-footer">Formula : Minimum Actual Flow - Minimum Standard Flow </div>'
 			+' </div>'
@@ -50,7 +50,7 @@ function calibration()
 			+' <div class="card-body">'
 			+'<input type="text" class="form-control" id="accuracyText"/>'
 			+'<br>'
-			 +'<button type="button"   class="btn btn-danger btnStyle" id="accuracySubmit"  ><b> SUBMIT </b></button>'
+			 +'<button type="button"   class="btn btn-danger btnStyle" id="accuracySubmit" data-toggle="modal" data-target="#myModal" ><b> SUBMIT </b></button>'
 			+'</div> '
 			//+' <div class="card-footer">Formula : Minimum Actual Flow - Minimum Standard Flow </div>'
 			+' </div>'
@@ -154,13 +154,32 @@ function calibration()
  +'</div>'
  +'</div>'
  +'<div class="row " id="nextFaultFindingDiv" >'
-	+'<button type="button" class="col-sm-12 btn btn-danger" style="margin-top:20px;" id="testing" hidden>Next Level</button>'
+	+'<button type="button" class="col-sm-12 btn btn-danger" style="margin-top:20px;" id="testing" >Next Level</button>'
 	+'</div>'
+	 + ' <!-- Modal -->'
+								+ '<div class="modal fade" id="myModal" role="dialog">'
+								+ ' <div class="modal-dialog modal-md">'
+								+ '    <div class="modal-content">'
+								+ '     <div class="modal-header">'
+								
+								+ '       <h4 class="modal-title">Message box</h4>'
+								+ '       <button type="button" class="close" data-dismiss="modal" style="color:#fff;">&times;</button>'
+								+ '     </div>'
+								+ '     <div class="modal-body">'
+								+ '       <p id="modelMsg">This is a small modal.</p>'
+								+ '     </div>'
+								+ '     <div class="modal-footer">'
+								+ '       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>'
+								+ '     </div>'
+								+ '   </div>'
+								+ ' </div>'
+								+ '</div>'
  $("#canvas-div1").append(algo);
 	
 			$("#main-div-conf").append(htm);
 			
 			$("#testing").click(function() {
+				
 //				fualtFinding();
 				htm = '<div class="row" id="CalculateActualFlow">'
 				
@@ -177,9 +196,29 @@ function calibration()
 				       +'<input type="text" id="speedAns" style="margin-top:30px;width:100%;" disabled class=" form-control"/ >'
 				       +'</div>'
 				       +'<div class="col-sm-4">'
-				       +'<br><button type="submit" id="btnAnsCheck" style="margin-top:10px;width:100%;" class=" btn btn-primary" data-toggle="modal" data-target="#mimicModel" disabled>Submit</button>'
+				       +'<br><button type="submit" id="btnAnsCheck" style="margin-top:10px;width:100%;" class=" btn btn-primary" data-toggle="modal" data-target="#myModal" disabled>Submit</button>'
 				       +'</div>'
 				       +'</div>'
+				        +'<br>'
+						       +'<br>'
+						       + ' <!-- Modal -->'
+								+ '<div class="modal fade" id="myModal" role="dialog">'
+								+ ' <div class="modal-dialog modal-md">'
+								+ '    <div class="modal-content">'
+								+ '     <div class="modal-header">'
+								
+								+ '       <h4 class="modal-title">Message box</h4>'
+								+ '       <button type="button" class="close" data-dismiss="modal" style="color:#fff;">&times;</button>'
+								+ '     </div>'
+								+ '     <div class="modal-body">'
+								+ '       <p id="modelMsg">This is a small modal.</p>'
+								+ '     </div>'
+								+ '     <div class="modal-footer">'
+								+ '       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>'
+								+ '     </div>'
+								+ '   </div>'
+								+ ' </div>'
+								+ '</div>'
 				      
 				 $("#CalculateActualFlow").html(CalculateActualFlowStr);
 				$("#canvas-div").html("");
@@ -213,12 +252,15 @@ function calibration()
 							$("#spanAnswer").attr("hidden",false);
 						}
 						else{
-							alert("	WRONG ANSWER");
+							 $("#modelMsg").html("<b class='boldTextRed'>Entered value is incorrect.Try it again</b>");
+							 $("body").css("padding","0px 0px 0px 0px");
 						}
 					}
 					else if(AnswerCounter==3)
 						{
-						alert("formula : mininum standerd value -"+min);
+//						alert("formula : mininum standerd value -"+min);
+						$("#modelMsg").html("<b class='boldTextRed'>Minimum Standard Value - Minimum Actual Value</b>");
+							 $("body").css("padding","0px 0px 0px 0px");
 						
 						}
 					else
@@ -230,7 +272,9 @@ function calibration()
 							$("#spanAnswer").attr("hidden",false);
 						}
 						else{
-								alert("	correct Answer "+ans1);
+//								alert("	correct Answer "+ans1);
+									$("#modelMsg").html("<b class='boldTextRed'>Correct answer is " + ans1+"</b>");
+								 $("body").css("padding","0px 0px 0px 0px");
 							}
 					
 						
@@ -265,12 +309,15 @@ function calibration()
 							$("#Linearity").attr("hidden",false);
 						}
 						else{
-							alert("	WRONG ANSWER");
+							 $("#modelMsg").html("<b class='boldTextRed'>Entered value is incorrect.Try it again</b>");
+							 $("body").css("padding","0px 0px 0px 0px");
 						}
 					}
 					else if(spanCounter==3)
 						{
-						alert("formula : maximum standerd value -"+min);
+//						alert("formula : maximum standerd value -"+min);
+						 $("#modelMsg").html("<b class='boldTextRed'>Maximun Standard Value - Maximun Actual Value</b>");
+							 $("body").css("padding","0px 0px 0px 0px");
 						
 						}
 					else
@@ -283,7 +330,9 @@ function calibration()
 							$("#Linearity").attr("hidden",false);
 						}
 						else{
-								alert("	correct Answer "+ans1);
+//								alert("	correct Answer "+ans1);
+									$("#modelMsg").html("<b class='boldTextRed'>Correct answer is " + ans1+"</b>");
+									 $("body").css("padding","0px 0px 0px 0px");
 							}
 						}
 					
@@ -371,14 +420,17 @@ function calibration()
 					$("#accuracy").attr("hidden",false);
 					
 				} else {
-					alert("Incorrect Answer ");
+					 $("#modelMsg").html("<b class='boldTextRed'>Entered value is incorrect.Try it again</b>");
+				 $("body").css("padding","0px 0px 0px 0px");
 //					var str='<img src="images/cancel.png" class=" img-fluid " />'
 //						+'<b id="errorText" style="color:red;margin-left:10px;" >Incorrect Answer ...</b> '
 //						$("#mimicModelMessage").html(str);
 				}
 			} else if (linearCounter == 3) {
-				alert(" A=Sqrt (sum(x^2))-(sum(x))^2/N). B=Sqrt (sum(y^2))-(sum(y))^2/N). C=sum(xy)-(sum(y))/N  . linearity =C/AB ");
-				
+//				alert(" A=Sqrt (sum(x^2))-(sum(x))^2/N). B=Sqrt (sum(y^2))-(sum(y))^2/N). C=sum(xy)-(sum(y))/N  . linearity =C/AB ");
+				modelImg = '<img src="images/Linearity.png" class="img-responsive" alt="Cinque Terre">'
+				 $("#modelMsg").html(modelImg);
+				 $("body").css("padding","0px 0px 0px 0px");
 				
 				
 			} else if (linearCounter >= 4) {
@@ -389,7 +441,9 @@ function calibration()
 					$("#linearAnswer").attr("hidden",false);
 					$("#accuracy").attr("hidden",false);
 				} else {
-					alert(" Correct Answer " + linearity1);
+//					alert(" Correct Answer " + linearity1);
+						$("#modelMsg").html("<b class='boldTextRed'>Correct answer is " + linearity1+"</b>");
+				 $("body").css("padding","0px 0px 0px 0px");
 
 				}
 			}
@@ -419,11 +473,15 @@ function calibration()
 					$("#zeroPanel").attr("hidden",false);
 					
 				} else {
-					alert("Incorrect Answer ");
+					 $("#modelMsg").html("<b class='boldTextRed'>Entered value is incorrect.Try it again</b>");
+				 $("body").css("padding","0px 0px 0px 0px");
 
 				}
 			} else if (accuracyCounter == 3) {
-				alert(" 1.PERCENTAGE ACCURACY = ((STANDERD OUTPUT - OBSERVED OUTPUT)/TOTAL NUMBER OF READING)*100) 2.AVERAGE ACCURACY = SUM OF(PERCENTAGE ACCURACY)/TOTAL NUMBER OF READING)   ");
+				modelImg = '<img src="images/Accuracy.png" class="img-responsive" alt="Cinque Terre">'
+				 $("#modelMsg").html(modelImg);
+				 $("body").css("padding","0px 0px 0px 0px");
+//				alert(" 1.PERCENTAGE ACCURACY = ((STANDERD OUTPUT - OBSERVED OUTPUT)/TOTAL NUMBER OF READING)*100) 2.AVERAGE ACCURACY = SUM OF(PERCENTAGE ACCURACY)/TOTAL NUMBER OF READING)   ");
 			} 
 			else 
 			{
@@ -435,7 +493,9 @@ function calibration()
 					$("#accuracyAnswer").attr("hidden",false);
 					$("#zeroPanel").attr("hidden",false);
 				} else {
-					alert(" Correct Answer " + accurance);
+					
+					$("#modelMsg").html("<b class='boldTextRed'>Correct answer is " + accurance+"</b>");
+				 $("body").css("padding","0px 0px 0px 0px");
 				}
 			}
 			accuracyCounter++;
@@ -570,7 +630,7 @@ function calibration()
 									     +'</div>'
 									     
 									     $("#plusMinusCalibrationZero").html(htm);
-//									   $("#zeroErrorAlert").attr("hidden",true);
+									   $("#zeroErrorAlert").attr("hidden",true);
 									
 									//Second Zero Set
 							 }
@@ -587,13 +647,13 @@ function calibration()
 		        $('#canvas-div').highcharts().redraw();
 		        
 		       
-				 rotate-=1;
+				 rotate+=1;
 				 
 //				 });
 				 $("#plus2").click(function() {
 						var ydataPulse=[];
 						var length= masterJson.demo.length-1;
-						console.log("plusssssssssssssss");
+					
 						$("#knob2").css({ transform: 'rotate('+rotate+'deg)' });
 						var actualSpan =parseFloat(masterJson.demo[0].torque_err);
 						var stdSpan=masterJson.demo[0].torque_corr;
@@ -622,7 +682,7 @@ function calibration()
 									 }
 									 
 									 else{
-										 temp= parseFloat(masterJson.demo[i].torque_err)+0.001;
+										 temp= parseFloat(masterJson.demo[i].torque_err)+0.01;
 										ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp);
 										
 									 }
@@ -673,7 +733,7 @@ function calibration()
 									 }
 									 
 									 else{
-										 temp= parseFloat(masterJson.demo[i].torque_err)-0.001;
+										 temp= parseFloat(masterJson.demo[i].torque_err)-0.01;
 										ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp);
 										
 									 }
@@ -750,7 +810,7 @@ function calibration()
 							 }
 							 
 							 else{
-								 temp= parseFloat(masterJson.demo[i].torque_err)-0.001;
+								 temp= parseFloat(masterJson.demo[i].torque_err)-0.01;
 								ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp);
 								
 							 }
@@ -790,8 +850,8 @@ function calibration()
 										    
 										 $("#zero2").html("");
 										   $('#zeroAlert2').removeAttr('hidden');
-										   $("#zeroBoth").removeAttr('hidden',false);
-										   $("#algo1").removeAttr('hidden',false);
+										   $("#zeroBoth").removeAttr('hidden');
+										   $("#algo1").removeAttr('hidden');
 										   $('#errorZeroAlert2').attr('hidden',true);
 										   
 										 temp= parseFloat(masterJson.demo[i].torque_err).toFixed(2);
@@ -824,8 +884,8 @@ function calibration()
 						var ydataPulse=[];
 						var length= masterJson.demo.length-1;
 						$("#knob2").css({ transform: 'rotate('+rotate+'deg)' });
-						var actualSpan =parseFloat(masterJson.demo[0].torque_err);
-						var stdSpan=masterJson.demo[0].torque_corr;
+						var actualSpan =parseFloat(masterJson.demo[0].torque_err).toFixed(2);
+						var stdSpan=parseFloat(masterJson.demo[0].torque_corr);
 						console.log("minusssssssssssss");
 						 console.log(" span std "+stdSpan+" actual "+actualSpan);
 						
@@ -1026,7 +1086,7 @@ function calibration()
 					$("#algo1Panel").html("");
 					$("#algo2").removeAttr('hidden');
 					$("#msgAlgo1").removeAttr('hidden');
-					
+					$("#testing").prop("hidden",false);
 					
 					
 				}
@@ -1052,7 +1112,7 @@ function calibration()
 					
 					var actualSpan=temp1;
 					var stdSpan=temp2;
-					 if(actualSpan<stdSpan)
+					 if(actualSpan<=stdSpan)
 						 {
 						 greaterCounter++;
 						 }
@@ -1076,13 +1136,13 @@ function calibration()
 						ydataPulse[i]=masterJson.demo[length].torque_err;
 
 					}
-					else if(stdSpan>actualSpan)
+					else if(stdSpan>=actualSpan)
 					  {
 //					  console.log("stdSpan "+stdSpan+" < actualSpan "+actualSpan);
 						temp=parseFloat(masterJson.demo[i].torque_err)+0.01;
 						ydataPulse[i]=masterJson.demo[i].torque_err=parseFloat(temp);
 					  }
-				  else if(stdSpan<actualSpan)
+				  else if(stdSpan<=actualSpan)
 						{
 //					  console.log("stdSpan "+stdSpan+" < actualSpan "+actualSpan);
 						temp=parseFloat(masterJson.demo[i].torque_err)-0.01;
@@ -1099,13 +1159,14 @@ function calibration()
 					  }
 
 				}
-				if(greaterCounter==0){
+				if(greaterCounter>=0){
 					
 					
 					$("#algo2Panel").html("");
 					$("#algo3").removeAttr('hidden',false);
-					$("#msgAlgo2").removeAttr('hidden',false);
-					$("#msgAlgo2Error").removeAttr('hidden',false);
+					$("#msgAlgo2").removeAttr('hidden');
+					$("#msgAlgo2Error").removeAttr('hidden');
+					
 				}
 
 						 var chart = $('#canvas-div').highcharts();
@@ -1114,6 +1175,18 @@ function calibration()
 					        rotate+=10;
 				
 			});
+			
+			
+//			var pulseAlgoCounter=0;
+				$("#minusAlgo2").click(function() {
+//					pulseAlgoCounter++;
+//					if(pulseAlgoCounter>5)
+//						{
+							alert(" Need to click on minus");
+//						}
+							 
+					
+				});
 			// Algorithm -3
 			
 			
@@ -1190,16 +1263,19 @@ function calibration()
 				    	{
 							 ydataPulse[i]=masterJson.demo[i].torque_err=stdSpan;
 				    	}
-					if(greaterCounter==0)
+					if(greaterCounter>=0)
 								{
 						console.log("Successfully done");
 //						$("#main-div-conf").html("");
 //						$("#main-div").html("done");
 //						$("#algoPanel").html("");
 //						$("#msgAlgo2").removeAttr('hidden',false);
-						$("#testing").prop("hidden",false);
-						$("#msgAlgo3").removeAttr('hidden',false);
-						$("#msgAlgo2Error").removeAttr('hidden',true);
+						
+//						$("#testing").prop("hidden",false);
+						$("#msgAlgo3").prop('hidden',false);
+						$("#algo3Panel").prop('hidden',true);
+						
+						$("#msgAlgo2Error").removeAttr('hidden');
 						
 //						console.log("greaterCounter "+greaterCounter);
 //								$("#linearAlgo3").hide();
