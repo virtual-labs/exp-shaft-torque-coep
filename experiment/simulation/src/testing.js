@@ -501,7 +501,9 @@ function testing() {
 				//event.stopPropagation();
 			} else if (speedAns != flow) {
 
-				alert("Entered value is incorrect.Try it again ");
+			
+				 $("#modelMsg").html("<b class='boldTextRed'>Entered value is incorrect.Try it again</b>");
+				 $("body").css("padding","0px 0px 0px 0px");
 
 
 			}
@@ -509,7 +511,9 @@ function testing() {
 
 		} else if (id == 4) {
 
-				alert(" Torque = F X r - for load condition");
+			
+				 $("#modelMsg").html("<b class='boldTextRed'>Torque = F X r - for load condition</b>");
+				 $("body").css("padding","0px 0px 0px 0px");
 
 		} else {
 			speedAns = $("#speedAns").val().trim();
@@ -527,7 +531,9 @@ function testing() {
 				event.stopPropagation();
 			} else {
 				checkAns = 0;
-				alert("correct answer is " + flow);
+				$("#modelMsg").html("<b class='boldTextRed'>Correct answer is " + flow+"</b>");
+				 $("body").css("padding","0px 0px 0px 0px");
+				
 
 			}
 		}
@@ -657,6 +663,8 @@ function testing() {
 				console.log("Ymax " + Ymax);
 				console.log(" Standard Torque v/s Actual Torque " + graphData1);
 				Highcharts.chart('canvas-div', {
+					exporting: { enabled: true },
+					credits: { enabled: false},
 					title: {
 						text: ' Graph of Standard Torque & Speed '
 					},
