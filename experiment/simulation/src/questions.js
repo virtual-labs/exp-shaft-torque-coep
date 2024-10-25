@@ -117,9 +117,30 @@
 				       +'<input type="text" id="speedAns" style="margin-top:30px;width:100%;" disabled class=" form-control"/ >'
 				       +'</div>'
 				       +'<div class="col-sm-4">'
-				       +'<br><button type="submit" id="btnAnsCheck" style="margin-top:10px;width:100%;" class=" btn btn-primary" data-toggle="modal" data-target="#mimicModel" disabled>Submit</button>'
+				       +'<br><button type="submit" id="btnAnsCheck" style="margin-top:10px;width:100%;" class=" btn btn-primary" data-toggle="modal" data-target="#myModal" disabled>Submit</button>'
 				       +'</div>'
 				       +'</div>'
+				        +'<br>'
+						       +'<br>'
+						       + ' <!-- Modal -->'
+								+ '<div class="modal fade" id="myModal" role="dialog">'
+								+ ' <div class="modal-dialog modal-md">'
+								+ '    <div class="modal-content">'
+								+ '     <div class="modal-header">'
+								
+								+ '       <h4 class="modal-title">Message box</h4>'
+								+ '       <button type="button" class="close" data-dismiss="modal" style="color:#fff;">&times;</button>'
+								+ '     </div>'
+								+ '     <div class="modal-body">'
+								+ '       <p id="modelMsg">This is a small modal.</p>'
+								+ '     </div>'
+								+ '     <div class="modal-footer">'
+								+ '       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>'
+								+ '     </div>'
+								+ '   </div>'
+								+ ' </div>'
+								+ '</div>'
+								//model Close
 				      
 				 $("#CalculateActualFlow").html(CalculateActualFlowStr);	 
 		 
