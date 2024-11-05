@@ -16,7 +16,7 @@ function calibration()
 			+'<br>'
 			 +'<button type="button"   class="btn btn-danger btnStyle" id="zeroSubmit" data-toggle="modal" data-target="#myModal" ><b> SUBMIT </b></button>'
 			+'</div> '
-			//+' <div class="card-footer">Formula : Minimum Actual Flow - Minimum Standard Flow </div>'
+			//+' <div class="card-footer">Formula : Minimum Actual Torque - Minimum Standard Torque </div>'
 			+' </div>'
 			+'</div>'
 			
@@ -29,7 +29,7 @@ function calibration()
 			 +'<button type="button"   class="btn btn-danger btnStyle" id="spanSubmit" data-toggle="modal" data-target="#myModal" ><b> SUBMIT </b></button>'
 				
 			+'</div> '
-		//	+' <div class="card-footer">Formula :Maximum Actual Flow - Maximum Standard Flow</div>'
+		//	+' <div class="card-footer">Formula :Maximum Actual Torque - Maximum Standard Torque</div>'
 			+' </div>'
 			+'</div>'
 			
@@ -41,7 +41,7 @@ function calibration()
 			+'<br>'
 			 +'<button type="button"   class="btn btn-danger btnStyle" id="linearSubmit" data-toggle="modal" data-target="#myModal"  ><b> SUBMIT </b></button>'
 			+'</div> '
-			//+' <div class="card-footer">Formula : Minimum Actual Flow - Minimum Standard Flow </div>'
+			//+' <div class="card-footer">Formula : Minimum Actual Torque - Minimum Standard Flow </div>'
 			+' </div>'
 			+'</div>'
 			+'<div class="col-sm-3" id="accuracy" hidden>'
