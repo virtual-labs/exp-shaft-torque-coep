@@ -59,7 +59,8 @@ function tableCreateForFualtFinding1()
 					
 					if(place<=i-1)
 						{
-							var errorshaft = masterJson.demo[i].torque_corr + 2;
+							var errorshaft1 = masterJson.demo[i].torque_corr + 2;
+							var errorshaft = errorshaft1.toFixed(2);
 							tableMainDiv += '<tr>'
 //							+ '   <td><center>' + masterJson.demo[i].RPM + '</center></td>'
 							+ '   <td style="background-color:#83e3998a;"><center>' + masterJson.demo[i].torque_corr+ '</center></td>'

@@ -46,10 +46,28 @@
 			}
 
 			questions += '<div class="buttonDiv">'
-				+ '<button id="testSubmit">Submit Test</button>'
+				+ '<button id="testSubmit" data-toggle="modal" data-target="#myModal">Submit Test</button>'
 				+ '<button id="mimicSubmit" class="nextLevelBtn">Next Level</button>'
 				+ '</div>'
-				+ '</div>';
+				+ '</div>'
+				+ ' <!-- Modal -->'
+								+ '<div class="modal fade" id="myModal" role="dialog">'
+								+ ' <div class="modal-dialog modal-md">'
+								+ '    <div class="modal-content">'
+								+ '     <div class="modal-header">'
+								
+								+ '       <h4 class="modal-title">Message box</h4>'
+								+ '       <button type="button" class="close" data-dismiss="modal" style="color:#fff;">&times;</button>'
+								+ '     </div>'
+								+ '     <div class="modal-body">'
+								+ '       <p id="modelMsg">This is a small modal.</p>'
+								+ '     </div>'
+								+ '     <div class="modal-footer">'
+								+ '       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>'
+								+ '     </div>'
+								+ '   </div>'
+								+ ' </div>'
+								+ '</div>';
 		
 
 			$("#canvas-div").html(questions);
@@ -72,7 +90,9 @@
 
 						if (myRadio == null) {
 							flag = flag && false;
-							alert('Please attempt all the questions');
+							$("#modelMsg").html("<b class='boldTextRed'>Please attempt all the questions </b>");
+							 $("body").css("padding","0px 0px 0px 0px");
+							
 
 							break;
 						}
@@ -91,9 +111,12 @@
 								ansCount++;
 							}
 						}
+						 $("#modelMsg").html("<b class='boldTextRed'>Test Submitted Successfully. Correct Answers Are :  "+ ansCount+" </b>");
+						 $("body").css("padding","0px 0px 0px 0px");
 						dataQues.corrAns = ansCount;
 						 data.corrAns = dataQues;
 						 console.log(data);
+						
 						alert("Test Submitted Successfully. Correct Answers Are : " + ansCount);
 						$("#testSubmit").prop('disabled',true);
 //						mimic();
