@@ -70,7 +70,8 @@ function tableCreateForFualtFinding1()
 						}
 					else
 						{
-						var errorshaft = masterJson.demo[i].torque_corr - 2;
+						var errorshaft1 = masterJson.demo[i].torque_corr - 2;
+						var errorshaft = errorshaft1.toFixed(2);
 						tableMainDiv += '<tr>'
 //							+ '   <td><center>' + masterJson.demo[i].RPM + '</center></td>'
 							+ '   <td style="background-color:#83e3998a;"><center >' + masterJson.demo[i].torque_corr + '</center></td>'
@@ -101,8 +102,8 @@ $("#centerText1").html("SHAFT TORUE DIAGRAM");
 	 $("#nextFaultFindingDiv").html("");
 	 $("#calibrationDiv").html("");
 	 $("#panelHeadingBold").html(""); 
-	  randomNumber = Math.round(Math.random() * 2);
-//	 randomNumber = 0;
+//	  randomNumber = Math.round(Math.random() * 2);
+	 randomNumber = 0;
 	 console.log("random  "+randomNumber);
 	var str=''
 	str+='<div class="row ">'
