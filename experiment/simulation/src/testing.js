@@ -512,7 +512,7 @@ function testing() {
 		} else if (id == 4) {
 
 			
-				 $("#modelMsg").html("<b class='boldTextRed'>Torque = (9.8 X Arm length X 1000 ) / Weight - for load condition</b>");
+				 $("#modelMsg").html("<b class='boldTextRed'>Torque = F X r - for load condition</b>");
 				 $("body").css("padding","0px 0px 0px 0px");
 
 		} else {
@@ -593,7 +593,7 @@ function testing() {
 			+ '<div class="row" >'
 			+ '<div class="col-sm-12">'
 			+ '<button type="button"  class="btn btn-primary btnStyle" id="showGraph"  >SHOW GRAPH</button>'
-			+ '<button type="button"  class="btn btn-primary btnStyle" id="fault" >Next Level</button>'
+			+ '<button type="button"  class="btn btn-primary btnStyle" id="fault" hidden>Next Level</button>'
 			+ '</div>'
 			+ '</div>'
 
@@ -624,6 +624,7 @@ function testing() {
 //					$("#calibration").removeAttr("hidden",false);
 					$("#showGraph").attr("hidden",true);
 					$("#tst").attr("hidden",true);
+					$("#fault").attr("hidden",false);
 					graphCreate();
 					data.Testing = testing;
 					console.log(data);
@@ -725,7 +726,7 @@ function testing() {
 		});
 		var str =  '<div class="row">'
 			+ '<div class="col-sm-12">'
-			+ '<button type="button"  class="btn btn-primary btnStyle" id="fault">Next Level</button>'
+			+ '<button type="button"  class="btn btn-primary btnStyle" id="fault" hidden >Next Level</button>'
 			+ '</div>'
 			+ '</div>'
 			$("#sub-main-div").append(str);
