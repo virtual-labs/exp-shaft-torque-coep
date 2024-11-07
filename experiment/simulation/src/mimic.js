@@ -583,8 +583,8 @@ function mimic() {
 		} else if (id == 4) {
 
 				
-				$("#modelMsg").html("<b class='boldTextRed'>Torque = (Power X 9.5488 )/ Speed - for no load condition"
-				+" Torque = (9.8 X Arm length X 1000 ) / Weight - for load condition </b>");
+				$("#modelMsg").html("<b class='boldTextRed'>Torque = Power X 9.5488 / Speed - for no load condition"
+				+" Torque = F X r - for load condition </b>");
 				 $("body").css("padding","0px 0px 0px 0px");
 
 		} else {
