@@ -28,6 +28,7 @@ function result(){
 }		
 $("#procedure-btn").prop("hidden",true);
 $("#refer").prop("hidden",true);
+$("#simDemo").prop("hidden",true);
 
 //		 console.log(data);
 //Basic knowledge	 
@@ -137,7 +138,7 @@ var htm = ''
 
 	+ '<div class="col-md-12">'
 	+ ' <div class="panel remarkBground" >'
-	+ ' <div class="panel-body remark" ><center> <br> <b>Shaft Torque Experiment is completed successfully!!</b>'
+	+ ' <div class="panel-body remark" style = "font-size:20px;" ><center> <br> <b>Shaft Torque Experiment is completed successfully!!</b>'
 	+ '<br> <b> </b></center></div>'
 	+ '</div>'
 	+ '</div>'
